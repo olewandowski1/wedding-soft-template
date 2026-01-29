@@ -1,0 +1,234 @@
+{
+  "Hero": {
+    "titlePrefix": "Wedding",
+    "invitation": "Wedding Invitation",
+    "names": "Zofia & Jan",
+    "subtitle": "We are delighted to invite you to our wedding celebration.",
+    "dateLabel": "Date",
+    "date": "September 12, 2026",
+    "time": "Ceremony 3:30 PM • Reception 5:30 PM",
+    "locationLabel": "Venue",
+    "location": "Pałac Ślubów Warszawa",
+    "address": "Miodowa 1, 00-251 Warsaw",
+    "ctaNote": "Please confirm your attendance.",
+    "rsvp": "Confirm attendance",
+    "heroImageAlt": "Romantic portrait of the couple",
+    "chapter": "Chapter I",
+    "story": "Our Love Story",
+    "est": "Est . September . 2026",
+    "withLove": "With Love & Joy"
+  },
+  "AccessGate": {
+    "trigger": "Get Access",
+    "title": "Zofia & Jan",
+    "description": "This is a private invitation. Please enter the password to access the site.",
+    "passwordInfo": "The password was sent with the invitation.",
+    "passwordLabel": "Password",
+    "cancel": "Back",
+    "checking": "Checking...",
+    "unlock": "Unlock"
+  },
+  "Details": {
+    "headerSubtitle": "Place and Time",
+    "headerTitle": "Celebration",
+    "ceremony": {
+      "title": "Wedding Ceremony",
+      "time": "3:30 PM",
+      "location": "Pałac Ślubów Warszawa",
+      "address": "Miodowa 1, 00-251 Warsaw",
+      "description": "The Marriage Palace in Warsaw is a unique venue with a rich history. Our ceremony will take place in one of its beautiful neoclassical halls, enchantingly elegant and solemn."
+    },
+    "reception": {
+      "title": "Wedding Reception",
+      "time": "5:30 PM",
+      "location": "Pałac Ślubów Warszawa — Reception Hall",
+      "address": "Miodowa 1, 00-251 Warsaw",
+      "description": "The Reception Hall combines historical charm with modern comfort. Spacious interiors and stylish decorations create a unique atmosphere for joyful celebration."
+    },
+    "getDirections": "Get Directions"
+  },
+  "Footer": {
+    "names": "Zofia & Jan",
+    "location": "Warsaw, Poland",
+    "date": "September 12, 2026",
+    "venue": "Pałac Ślubów"
+  },
+  "InfoSection": {
+    "headerSubtitle": "Important Tips",
+    "headerTitle": "For Guests",
+    "dressCode": {
+      "title": "Dress Code",
+      "description": "Soft elegance in pastels — light, muted tones are perfect."
+    },
+    "gifts": {
+      "title": "Gifts",
+      "description": "Your presence is the greatest gift. If you wish, a small envelope will be appreciated."
+    },
+    "additionalInfo": {
+      "title": "Additional Information",
+      "description": "On-site parking and accommodation tips will be shared closer to the date."
+    }
+  },
+  "Navigation": {
+    "home": "Home",
+    "story": "Our Story",
+    "details": "Details",
+    "timeline": "Schedule",
+    "info": "Information",
+    "faq": "FAQ",
+    "gallery": "Gallery",
+    "rsvp": "RSVP",
+    "menuOpen": "Menu",
+    "menuClose": "Close"
+  },
+  "Timeline": {
+    "headerSubtitle": "Flow of the Day",
+    "headerTitle": "Wedding Plan",
+    "items": {
+      "ceremony": {
+        "time": "3:30 PM",
+        "title": "Wedding Ceremony",
+        "description": "Exchanging our vows in the presence of those dearest to us."
+      },
+      "reception": {
+        "time": "5:30 PM",
+        "title": "Welcome Reception",
+        "description": "A time for heartfelt wishes, a welcome toast, and the joyful start of our festivities."
+      },
+      "dinner": {
+        "time": "6:30 PM",
+        "title": "Wedding Banquet",
+        "description": "A formal celebratory meal and an opportunity for warm conversation."
+      },
+      "party": {
+        "time": "8:00 PM",
+        "title": "First Dance",
+        "description": "The moment music and dance officially open the evening's celebration."
+      },
+      "cake": {
+        "time": "9:30 PM",
+        "title": "Wedding Cake",
+        "description": "A sweet interlude marked by the traditional cutting of the wedding cake."
+      },
+      "midnight": {
+        "time": "12:00 AM",
+        "title": "Late Night Celebration",
+        "description": "Continuing the festivities under the lights to the sounds of our favorite melodies."
+      }
+    }
+  },
+  "Gallery": {
+    "headerSubtitle": "Memories",
+    "headerTitle": "Shared Gallery",
+    "description": "We would love to see this day through your eyes. Please share the moments you capture in our shared folder, where you can also return later to relive the celebration through everyone's photos.",
+    "descriptionExtra": "",
+    "viewGallery": "Open Shared Album",
+    "images": [
+      "Zofia and Jan on a quiet walk",
+      "Soft portrait of the couple",
+      "Warm light captured in a tender moment",
+      "Outdoor portrait with gentle tones"
+    ]
+  },
+  "FAQ": {
+    "headerSubtitle": "Common Questions",
+    "headerTitle": "Learn More",
+    "questions": {
+      "accommodation": {
+        "q": "Do you recommend hotels in Warsaw?",
+        "a": "Yes, we will share a short list of nearby hotel options."
+      },
+      "transport": {
+        "q": "What is the easiest way to get there?",
+        "a": "Taxi or public transport is easiest; stops are a 3–5 minute walk away."
+      },
+      "children": {
+        "q": "Can we bring children?",
+        "a": "Absolutely — please let us know in the RSVP so we can prepare a seat."
+      },
+      "parking": {
+        "q": "Is parking available?",
+        "a": "Yes, there are limited parking spaces on site."
+      }
+    }
+  },
+  "RSVP": {
+    "headerSubtitle": "Join Us",
+    "headerTitle": "RSVP",
+    "deadline": "Please confirm your attendance by August 15, 2026.",
+    "footerText": "We can't wait to see you!",
+    "success": {
+      "title": "THANK YOU!",
+      "message1": "Your confirmation has been sent.",
+      "message2": "See you there!",
+      "resetButton": "Fill again"
+    },
+    "form": {
+      "fullNameLabel": "Full Name",
+      "fullNamePlaceholder": "e.g. Zofia Nowak",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "e.g. zofia@nowak.com",
+      "plusOneLabel": "Plus One (optional)",
+      "plusOnePlaceholder": "e.g. Jan Kowalski",
+      "attendanceLabel": "Attendance Confirmation",
+      "attendancePlaceholder": "Choose your answer",
+      "attendanceYes": "Yes, with pleasure!",
+      "attendanceNo": "Unfortunately, I can't make it...",
+      "messageLabel": "Your Message (optional)",
+      "messagePlaceholder": "Share dietary needs or a short note...",
+      "submitButton": "Send Confirmation",
+      "privacyNote": "Your details remain private and are used only for the event.",
+      "fullNameError": "Please provide your full name.",
+      "emailError": "Please provide a valid email address."
+    }
+  },
+  "Story": {
+    "headerSubtitle": "Our Journey Together",
+    "headerTitle": "Our Story",
+    "imageAlt1": "Zofia and Jan during a shared walk",
+    "imageAlt2": "Shared moments of Zofia and Jan",
+    "quote": "Love began with a small conversation and stayed with us ever since.",
+    "historyParagraph1": "We met in Warsaw at a place we both returned to after work. Over time, those meetings turned into daily joy.",
+    "historyParagraph2": "Travel, late-night talks, and small rituals became the foundation of our relationship. Today we are grateful to share this day with you.",
+    "futureTitle": "Shared Future",
+    "futureParagraph1": "Our wedding is the start of a new chapter — calm, trusting, and full of plans.",
+    "futureParagraph2": "We invite you to celebrate in a place that is especially close to our hearts."
+  },
+  "LanguageSwitcher": {
+    "label": "Change language",
+    "pl": "Polish",
+    "en": "English"
+  },
+  "Errors": {
+    "rateLimit": {
+      "title": "Too Many Attempts",
+      "detail": "Attempt limit reached. Please wait a few minutes and try again."
+    },
+    "missingPassword": {
+      "title": "Missing Password",
+      "detail": "Access password has not been configured. Contact the administrator."
+    },
+    "missingSecret": {
+      "title": "Missing Access Secret",
+      "detail": "WEDDING_ACCESS_SECRET is missing. Contact the administrator."
+    },
+    "passwordRequired": {
+      "title": "Password Required",
+      "detail": "Please enter the password to gain access."
+    },
+    "invalidPassword": {
+      "title": "Invalid Password",
+      "detail": "Try again or contact the administrator."
+    }
+  },
+  "Metadata": {
+    "title": "Zofia & Jan - Wedding Website",
+    "description": "Join us for the wedding of Zofia and Jan. This page includes all ceremony details, our story, and the RSVP form.",
+    "invitation": "Invitation"
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "description": "We are sorry, but the page you are looking for does not exist or has been moved. Return to the home page to continue viewing our wedding details.",
+    "backHome": "Back to Home"
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "Hero": {
+    "titlePrefix": "Ślub",
+    "invitation": "Zaproszenie na ślub",
+    "names": "Zofia & Jan",
+    "subtitle": "Z radością zapraszamy na nasz ślub i wspólne świętowanie.",
+    "dateLabel": "Data",
+    "date": "12 września 2026",
+    "time": "Ceremonia 15:30 • Przyjęcie 17:30",
+    "locationLabel": "Miejsce",
+    "location": "Pałac Ślubów Warszawa",
+    "address": "ul. Miodowa 1, 00-251 Warszawa",
+    "ctaNote": "Prosimy o potwierdzenie obecności.",
+    "rsvp": "Potwierdź przybycie",
+    "heroImageAlt": "Romantyczne zdjęcie pary",
+    "chapter": "Rozdział I",
+    "story": "Nasza Historia Miłości",
+    "est": "12 . Września . 2026",
+    "withLove": "Z Miłością i Radością"
+  },
+  "AccessGate": {
+    "trigger": "Uzyskaj Dostęp",
+    "title": "Zofia & Jan",
+    "description": "To prywatne zaproszenie. Proszę wprowadzić hasło, aby uzyskać dostęp do strony.",
+    "passwordInfo": "Hasło zostało wysłane wraz z zaproszeniem.",
+    "passwordLabel": "Hasło",
+    "cancel": "Wróć",
+    "checking": "Sprawdzanie...",
+    "unlock": "Odblokuj"
+  },
+  "Details": {
+    "headerSubtitle": "Miejsce i Czas",
+    "headerTitle": "Uroczystość",
+    "ceremony": {
+      "title": "Ceremonia Zaślubin",
+      "time": "15:30",
+      "location": "Pałac Ślubów Warszawa",
+      "address": "ul. Miodowa 1, 00-251 Warszawa",
+      "description": "Pałac Ślubów w Warszawie to wyjątkowe miejsce o bogatej historii. Ceremonia odbędzie się w jednej z jego najpiękniejszych, klasycystycznych sal, która zachwyca swoją elegancją i podniosłą atmosferą."
+    },
+    "reception": {
+      "title": "Przyjęcie Weselne",
+      "time": "17:30",
+      "location": "Pałac Ślubów Warszawa — Sala Przyjęć",
+      "address": "ul. Miodowa 1, 00-251 Warszawa",
+      "description": "Sala Przyjęć łączy w sobie historyczny urok z nowoczesnym komfortem. Przestronne wnętrza i stylowe dekoracje tworzą niepowtarzalny klimat sprzyjający radosnemu świętowaniu."
+    },
+    "getDirections": "Dojazd na miejsce"
+  },
+  "Footer": {
+    "names": "Zofia & Jan",
+    "location": "Warszawa, Polska",
+    "date": "12 Września 2026",
+    "venue": "Pałac Ślubów"
+  },
+  "InfoSection": {
+    "headerSubtitle": "Ważne Wskazówki",
+    "headerTitle": "Dla Gości",
+    "dressCode": {
+      "title": "Dress Code",
+      "description": "Elegancja w pastelach — jasne, stonowane kolory będą idealne."
+    },
+    "gifts": {
+      "title": "Prezenty",
+      "description": "Największym prezentem jest Wasza obecność. Jeśli chcecie, mile widziana będzie symboliczna koperta."
+    },
+    "additionalInfo": {
+      "title": "Dodatkowe Informacje",
+      "description": "Parking przy obiekcie oraz wskazówki noclegowe podamy bliżej terminu."
+    }
+  },
+  "Navigation": {
+    "home": "Start",
+    "story": "Nasza Historia",
+    "details": "Szczegóły",
+    "timeline": "Harmonogram",
+    "info": "Informacje",
+    "faq": "FAQ",
+    "gallery": "Galeria",
+    "rsvp": "RSVP",
+    "menuOpen": "Menu",
+    "menuClose": "Zamknij"
+  },
+  "Timeline": {
+    "headerSubtitle": "Przebieg Dnia",
+    "headerTitle": "Plan Wesela",
+    "items": {
+      "ceremony": {
+        "time": "15:30",
+        "title": "Ceremonia Zaślubin",
+        "description": "Symboliczne wypowiedzenie sakramentalnego „tak” w otoczeniu najbliższych nam osób."
+      },
+      "reception": {
+        "time": "17:30",
+        "title": "Powitanie Gości",
+        "description": "Chwila na wspólne życzenia, powitalny toast oraz radosne rozpoczęcie uroczystości."
+      },
+      "dinner": {
+        "time": "18:30",
+        "title": "Kolacja Weselna",
+        "description": "Uroczysty posiłek, który stanie się okazją do ciepłych rozmów przy wspólnym stole."
+      },
+      "party": {
+        "time": "20:00",
+        "title": "Pierwszy Taniec",
+        "description": "Moment, w którym muzyka i taniec oficjalnie otworzą nasz wspólny wieczór."
+      },
+      "cake": {
+        "time": "21:30",
+        "title": "Tort Weselny",
+        "description": "Słodki akcent wieczoru, celebrowany wspólnym krojeniem tortu weselnego."
+      },
+      "midnight": {
+        "time": "00:00",
+        "title": "Wieczorne Atrakcje",
+        "description": "Kontynuacja celebracji w blasku świateł, przy dźwiękach ulubionej muzyki."
+      }
+    }
+  },
+  "Gallery": {
+    "headerSubtitle": "Wspomnienia",
+    "headerTitle": "Wspólna Galeria",
+    "description": "Chcielibyśmy zobaczyć ten dzień Waszymi oczami. Prosimy, podzielcie się uchwyconymi chwilami w naszym wspólnym folderze, do którego będziecie mogli wrócić później, aby powspominać te chwile dzięki zdjęciom wszystkich gości.",
+    "descriptionExtra": "",
+    "viewGallery": "Otwórz Wspólny Album",
+    "images": [
+      "Zofia i Jan podczas spaceru",
+      "Romantyczne ujęcie pary",
+      "Subtelny kadr w ciepłym świetle",
+      "Delikatny portret w plenerze"
+    ]
+  },
+  "FAQ": {
+    "headerSubtitle": "Częste Pytania",
+    "headerTitle": "Dowiedz się więcej",
+    "questions": {
+      "accommodation": {
+        "q": "Czy polecacie noclegi w Warszawie?",
+        "a": "Tak, przygotujemy krótką listę polecanych hoteli w pobliżu centrum."
+      },
+      "transport": {
+        "q": "Jak najłatwiej dojechać na miejsce?",
+        "a": "Najwygodniej taksówką lub komunikacją miejską; przystanki są 3–5 minut pieszo."
+      },
+      "children": {
+        "q": "Czy możemy przyjść z dziećmi?",
+        "a": "Oczywiście — dajcie nam proszę znać w RSVP, abyśmy mogli przygotować miejsce."
+      },
+      "parking": {
+        "q": "Czy dostępny jest parking?",
+        "a": "Tak, przy obiekcie znajduje się ograniczona liczba miejsc parkingowych."
+      }
+    }
+  },
+  "RSVP": {
+    "headerSubtitle": "Bądźcie z Nami",
+    "headerTitle": "RSVP",
+    "deadline": "Prosimy o potwierdzenie przybycia do 15 sierpnia 2026.",
+    "footerText": "Nie możemy się doczekać spotkania z Wami!",
+    "success": {
+      "title": "DZIĘKUJEMY!",
+      "message1": "Twoje potwierdzenie zostało wysłane.",
+      "message2": "Do zobaczenia!",
+      "resetButton": "Wypełnij ponownie"
+    },
+    "form": {
+      "fullNameLabel": "Imię i Nazwisko",
+      "fullNamePlaceholder": "np. Zofia Nowak",
+      "emailLabel": "Adres E-mail",
+      "emailPlaceholder": "np. zofia@nowak.pl",
+      "plusOneLabel": "Osoba Towarzysząca (opcjonalnie)",
+      "plusOnePlaceholder": "np. Jan Kowalski",
+      "attendanceLabel": "Potwierdzenie obecności",
+      "attendancePlaceholder": "Wybierz odpowiedź",
+      "attendanceYes": "Tak, z przyjemnością!",
+      "attendanceNo": "Niestety nie mogę...",
+      "messageLabel": "Twoja wiadomość (opcjonalnie)",
+      "messagePlaceholder": "Dajcie znać o preferencjach lub alergiach...",
+      "submitButton": "Wyślij Potwierdzenie",
+      "privacyNote": "Twoje dane pozostają wyłącznie do naszej dyspozycji.",
+      "fullNameError": "Proszę podać imię i nazwisko.",
+      "emailError": "Proszę podać poprawny adres e-mail."
+    }
+  },
+  "Story": {
+    "headerSubtitle": "Nasza Wspólna Droga",
+    "headerTitle": "Nasza Historia",
+    "imageAlt1": "Zofia i Jan podczas wspólnego spaceru",
+    "imageAlt2": "Wspólne chwile Zofii i Jana",
+    "quote": "Miłość zaczęła się od małej rozmowy i już z nami została.",
+    "historyParagraph1": "Poznaliśmy się w Warszawie, w miejscu, do którego oboje wracaliśmy po pracy. Z czasem wspólne spotkania zamieniły się w codzienną radość.",
+    "historyParagraph2": "Podróże, rozmowy do późna i drobne rytuały stały się fundamentem naszej relacji. Dziś z wdzięcznością chcemy podzielić się tym dniem z Wami.",
+    "futureTitle": "Wspólna Przyszłość",
+    "futureParagraph1": "Ślub to dla nas początek nowego rozdziału — pełnego spokoju, zaufania i wspólnych planów.",
+    "futureParagraph2": "Zapraszamy Was do celebracji w miejscu, które jest nam szczególnie bliskie."
+  },
+  "LanguageSwitcher": {
+    "label": "Zmień język",
+    "pl": "Polski",
+    "en": "Angielski"
+  },
+  "Errors": {
+    "rateLimit": {
+      "title": "Zbyt Wiele Prób",
+      "detail": "Przekroczono limit prób. Odczekaj kilka minut i spróbuj ponownie."
+    },
+    "missingPassword": {
+      "title": "Brak Ustawionego Hasła",
+      "detail": "Hasło dostępu nie zostało skonfigurowane. Skontaktuj się z administratorem."
+    },
+    "missingSecret": {
+      "title": "Brak Sekretu Dostępu",
+      "detail": "Brakuje WEDDING_ACCESS_SECRET. Skontaktuj się z administratorem."
+    },
+    "passwordRequired": {
+      "title": "Hasło Wymagane",
+      "detail": "Proszę wprowadzić hasło, aby uzyskać dostęp."
+    },
+    "invalidPassword": {
+      "title": "Nieprawidłowe Hasło",
+      "detail": "Spróbuj ponownie lub skontaktuj się z administratorem."
+    }
+  },
+  "Metadata": {
+    "title": "Zofia & Jan - Strona Ślubna",
+    "description": "Zapraszamy na ślub Zofii i Jana. Na tej stronie znajdziecie wszystkie szczegóły uroczystości, naszą historię oraz formularz RSVP.",
+    "invitation": "Zaproszenie"
+  },
+  "NotFound": {
+    "title": "Nie znaleziono strony",
+    "description": "Przepraszamy, ale strona, której szukasz, nie istnieje lub została przeniesiona. Wróć na stronę główną, aby kontynuować przeglądanie szczegółów naszego ślubu.",
+    "backHome": "Wróć do strony głównej"
+  }
+}

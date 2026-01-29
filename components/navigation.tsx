@@ -189,12 +189,7 @@ export function Navigation() {
                           stiffness: 400,
                           damping: 30,
                         }}
-                      >
-                        <motion.div
-                          layoutId='activeIndicator'
-                          className='absolute -bottom-[-2px] left-1/2 -translate-x-1/2 w-4 h-[1.5px] bg-primary/40 rounded-full'
-                        />
-                      </motion.div>
+                      />
                     )}
                   </Link>
                 );

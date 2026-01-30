@@ -11,7 +11,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import * as React from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -19,13 +19,6 @@ import * as z from 'zod';
 
 export function RSVP() {
   const t = useTranslations('RSVP');
-  const tHero = useTranslations('Hero');
-  const containerRef = React.useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start end', 'end start'],
-  });
 
   const formSchema = React.useMemo(
     () =>
@@ -62,11 +55,10 @@ export function RSVP() {
 
   return (
     <section
-      ref={containerRef}
       id='rsvp'
       className='relative scroll-mt-24 py-20 sm:py-24 lg:py-32 overflow-hidden bg-background'
     >
-      {/* Background Ornaments */}
+      {/* Static Background */}
       <div className='absolute inset-0 pointer-events-none z-0'>
         <div
           className='absolute inset-0 opacity-[0.02]'
@@ -75,12 +67,7 @@ export function RSVP() {
               'url("https://grainy-gradients.vercel.app/noise.svg")',
           }}
         />
-        <motion.div
-          style={{
-            y: useTransform(scrollYProgress, [0, 1], [-100, 100]),
-          }}
-          className='absolute top-[-10%] right-[-10%] w-[50%] aspect-square bg-primary/10 blur-[130px] rounded-full'
-        />
+        <div className='absolute top-[-10%] right-[-10%] w-[50%] aspect-square bg-primary/10 blur-[130px] rounded-full' />
       </div>
 
       <div className='relative z-10 mx-auto w-full max-w-4xl px-6'>
@@ -321,7 +308,7 @@ export function RSVP() {
                 <Button
                   type='submit'
                   size='lg'
-                  className='rounded-full px-12 h-14 bg-primary text-primary-foreground hover:bg-primary/90 transition-all font-serif text-lg italic tracking-widest shadow-xl shadow-primary/10'
+                  className='rounded-full px-12 h-14 bg-primary text-primary-foreground hover:bg-primary/90 transition-[background-color,transform,box-shadow] font-serif text-lg italic tracking-widest shadow-xl shadow-primary/10'
                 >
                   {t('form.submitButton')}
                 </Button>

@@ -63,14 +63,7 @@ export function Details() {
               'url("https://grainy-gradients.vercel.app/noise.svg")',
           }}
         />
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.02, 0.04, 0.02],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
-          className='absolute bottom-[-10%] left-[-10%] w-[60%] aspect-square bg-primary/10 blur-[120px] rounded-full'
-        />
+        <div className='absolute bottom-[-10%] left-[-10%] w-[60%] aspect-square bg-primary/10 blur-[120px] rounded-full opacity-[0.03]' />
       </div>
 
       <div className='relative z-10 mx-auto w-full max-w-6xl px-6'>
@@ -82,7 +75,7 @@ export function Details() {
             viewport={{ once: true }}
             className='relative'
           >
-            <span className='font-serif text-[10px] uppercase tracking-[0.8em] text-primary/60 block'>
+            <span className='font-serif text-[10px] uppercase tracking-[0.8em] text-primary/80 block'>
               {t('headerSubtitle')}
             </span>
             <h2 className='font-serif text-5xl sm:text-7xl lg:text-8xl text-foreground font-extralight tracking-tighter italic'>
@@ -113,7 +106,7 @@ export function Details() {
                 viewport={{ once: true, margin: '-10%' }}
                 transition={{ duration: 1.2 }}
                 style={{ y: index % 2 === 0 ? y1 : y2 }}
-                className={`relative aspect-[4/5] w-full max-w-md mx-auto lg:max-w-none ${
+                className={`relative aspect-[4/5] w-full max-w-md mx-auto lg:max-w-none will-change-transform ${
                   index % 2 !== 0 ? 'lg:order-2' : ''
                 }`}
               >
@@ -162,7 +155,7 @@ export function Details() {
                 className='flex flex-col gap-6 lg:gap-8'
               >
                 <div className='flex flex-col gap-4'>
-                  <div className='flex items-center gap-2 text-primary/60'>
+                  <div className='flex items-center gap-2 text-primary/80'>
                     <Clock size={16} strokeWidth={1.5} />
                     <span className='font-serif text-md tracking-widest uppercase'>
                       {event.time}
@@ -182,20 +175,20 @@ export function Details() {
 
                     <div className='flex items-start gap-4 relative z-10'>
                       <MapPin
-                        className='text-primary/40 mt-1 shrink-0'
+                        className='text-primary/60 mt-1 shrink-0'
                         size={20}
                       />
                       <div className='flex flex-col gap-1'>
                         <span className='font-serif text-lg text-foreground font-medium'>
                           {event.location}
                         </span>
-                        <span className='text-sm text-foreground/50 leading-relaxed max-w-xs'>
+                        <span className='text-sm text-foreground/70 leading-relaxed max-w-xs'>
                           {event.address}
                         </span>
                       </div>
                     </div>
 
-                    <p className='text-lg leading-relaxed text-foreground/70 font-light italic relative z-10'>
+                    <p className='text-lg leading-relaxed text-foreground/85 font-light italic relative z-10'>
                       &ldquo;{event.description}&rdquo;
                     </p>
 
@@ -204,12 +197,12 @@ export function Details() {
                         href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.address)}`}
                         target='_blank'
                         rel='noopener noreferrer'
-                        className='group/link inline-flex items-center gap-3 text-xs uppercase tracking-widest text-primary/60 hover:text-primary transition-colors'
+                        className='group/link inline-flex items-center gap-3 text-xs uppercase tracking-widest text-primary/80 hover:text-primary transition-colors'
                       >
                         <span className='border-b border-primary/20 pb-1 group-hover/link:border-primary transition-colors'>
                           {t('getDirections')}
                         </span>
-                        <div className='w-8 h-px bg-primary/20 group-hover/link:w-12 transition-all' />
+                        <div className='w-8 h-px bg-primary/20 group-hover/link:w-12 transition-[width]' />
                       </a>
                     </div>
                   </div>

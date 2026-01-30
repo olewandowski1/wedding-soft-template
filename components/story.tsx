@@ -3,40 +3,24 @@
 import * as React from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 
 export function Story() {
   const t = useTranslations('Story');
   const tHero = useTranslations('Hero');
   const shouldReduceMotion = useReducedMotion();
-  const containerRef = React.useRef(null);
   const [isMounted, setIsMounted] = React.useState(false);
 
   React.useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start end', 'end start'],
-  });
-
-  const rotate1 = useTransform(scrollYProgress, [0, 1], [-2, 2]);
-  const rotate2 = useTransform(scrollYProgress, [0, 1], [3, -1]);
-  const yOffset = useTransform(scrollYProgress, [0, 1], [0, -40]);
-
   return (
     <section
-      ref={containerRef}
       id='story'
       className='relative scroll-mt-24 py-24 sm:py-32 lg:py-48 overflow-hidden bg-background'
     >
-      {/* Background Ornaments */}
+      {/* Static Background - No scroll transforms */}
       <div className='absolute inset-0 pointer-events-none z-0'>
         <div
           className='absolute inset-0 opacity-[0.03]'
@@ -45,14 +29,7 @@ export function Story() {
               'url("https://grainy-gradients.vercel.app/noise.svg")',
           }}
         />
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.03, 0.05, 0.03],
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
-          className='absolute top-0 right-[-10%] w-[50%] aspect-square bg-primary/20 blur-[120px] rounded-full'
-        />
+        <div className='absolute top-0 right-[-10%] w-[50%] aspect-square bg-primary/20 blur-[120px] rounded-full opacity-[0.04]' />
       </div>
 
       <div className='relative z-10 mx-auto w-full max-w-6xl px-6'>
@@ -64,7 +41,7 @@ export function Story() {
             viewport={{ once: true }}
             className='relative'
           >
-            <span className='font-serif text-[10px] uppercase tracking-[0.8em] text-primary/60 block'>
+            <span className='font-serif text-[10px] uppercase tracking-[0.8em] text-primary/80 block'>
               {t('headerSubtitle')}
             </span>
             <h2 className='font-serif text-5xl sm:text-7xl lg:text-8xl text-foreground font-extralight tracking-tighter italic'>
@@ -82,11 +59,8 @@ export function Story() {
         <div className='grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-20 lg:gap-32 items-center'>
           {/* Stacked Image Composition */}
           <div className='relative flex items-center justify-center lg:justify-start'>
-            {/* Decorative SVG Ornament behind stack */}
-            <motion.div
-              style={{ rotate: useTransform(scrollYProgress, [0, 1], [0, 45]) }}
-              className='absolute -top-12 -left-12 w-48 h-48 text-primary/5 hidden lg:block'
-            >
+            {/* Decorative SVG Ornament behind stack - static */}
+            <div className='absolute -top-12 -left-12 w-48 h-48 text-primary/5 hidden lg:block'>
               <svg
                 viewBox='0 0 200 200'
                 fill='none'
@@ -98,17 +72,11 @@ export function Story() {
                   strokeWidth='0.5'
                 />
               </svg>
-            </motion.div>
+            </div>
 
             <div className='relative w-full max-w-md aspect-[4/5] sm:max-w-lg group/stack'>
-              {/* Extra Back Image */}
+              {/* Extra Back Image - static rotation */}
               <motion.div
-                style={{
-                  rotate: shouldReduceMotion ? 2 : rotate2,
-                  y: shouldReduceMotion
-                    ? 0
-                    : useTransform(scrollYProgress, [0, 1], [40, -40]),
-                }}
                 initial={{ opacity: 0, x: 40, y: 30, rotate: 12 }}
                 whileInView={{ opacity: 1, x: 0, y: 0, rotate: 6 }}
                 viewport={{ once: true, margin: '-10%' }}
@@ -128,12 +96,8 @@ export function Story() {
                 />
               </motion.div>
 
-              {/* Middle Image (Stacked Offset) */}
+              {/* Middle Image - static rotation */}
               <motion.div
-                style={{
-                  rotate: shouldReduceMotion ? -3 : rotate1,
-                  y: shouldReduceMotion ? 0 : yOffset,
-                }}
                 initial={{ opacity: 0, x: -60, y: 40, rotate: -10 }}
                 whileInView={{ opacity: 1, x: 0, y: 0, rotate: -3 }}
                 viewport={{ once: true, margin: '-10%' }}
@@ -154,9 +118,8 @@ export function Story() {
                 <div className='absolute inset-0 bg-primary/5 mix-blend-overlay' />
               </motion.div>
 
-              {/* Main Front Image */}
+              {/* Main Front Image - static */}
               <motion.div
-                style={{ rotate: shouldReduceMotion ? 2 : rotate2 }}
                 initial={{ opacity: 0, scale: 0.8, rotate: 5, y: 40 }}
                 whileInView={{ opacity: 1, scale: 1, rotate: 2, y: 0 }}
                 viewport={{ once: true, margin: '-10%' }}
@@ -198,7 +161,7 @@ export function Story() {
                 </p>
               </div>
 
-              <div className='flex flex-col gap-6 text-lg leading-relaxed text-foreground/70 font-light max-w-md'>
+              <div className='flex flex-col gap-6 text-lg leading-relaxed text-foreground/85 font-light max-w-md'>
                 <p>{t('historyParagraph1')}</p>
                 <div className='flex items-center gap-3'>
                   <div className='h-px w-6 bg-primary/30' />
@@ -223,10 +186,10 @@ export function Story() {
                 </svg>
               </div>
 
-              <span className='font-serif text-[10px] uppercase tracking-[0.4em] text-primary/50 mb-4 block'>
+              <span className='font-serif text-[10px] uppercase tracking-[0.4em] text-primary/70 mb-4 block'>
                 {t('futureTitle')}
               </span>
-              <div className='flex font-serif flex-col gap-6 text-lg leading-relaxed text-foreground/80 italic relative z-10'>
+              <div className='flex font-serif flex-col gap-6 text-lg leading-relaxed text-foreground/90 italic relative z-10'>
                 <p>{t('futureParagraph1')}</p>
               </div>
             </motion.div>
@@ -234,33 +197,7 @@ export function Story() {
         </div>
       </div>
 
-      {/* Dynamic Floating Petals for Story Section (Matching Hero) */}
-      {!shouldReduceMotion && isMounted && (
-        <div className='absolute inset-0 pointer-events-none z-1'>
-          {[...Array(8)].map((_, i) => (
-            <motion.div
-              key={i}
-              className='absolute h-1 w-1 rounded-full bg-primary/10'
-              initial={{
-                x: `${Math.random() * 100}%`,
-                y: `${Math.random() * 100}%`,
-                opacity: 0,
-              }}
-              animate={{
-                y: ['-10%', '110%'],
-                x: `${Math.random() * 20 - 10}%`,
-                opacity: [0, 0.4, 0],
-              }}
-              transition={{
-                duration: Math.random() * 10 + 20,
-                repeat: Infinity,
-                ease: 'linear',
-                delay: Math.random() * 15,
-              }}
-            />
-          ))}
-        </div>
-      )}
+      {/* Removed floating petals for performance */}
     </section>
   );
 }

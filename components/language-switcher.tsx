@@ -42,11 +42,11 @@ export function LanguageSwitcher({ scrolled }: { scrolled?: boolean }) {
         animate={{
           x: locale === 'pl' ? 0 : 34,
         }}
-        transition={{ 
-          type: 'spring', 
-          stiffness: 450, 
+        transition={{
+          type: 'spring',
+          stiffness: 450,
           damping: 30,
-          mass: 0.8
+          mass: 0.8,
         }}
       />
 
@@ -56,20 +56,22 @@ export function LanguageSwitcher({ scrolled }: { scrolled?: boolean }) {
           onClick={() => handleLocaleChange(lang.code)}
           disabled={isPending}
           className={cn(
-            'relative z-10 flex-1 h-full flex items-center justify-center transition-all duration-500 overflow-hidden'
+            'relative z-10 flex-1 h-full flex items-center justify-center transition-colors duration-500 overflow-hidden',
           )}
           title={lang.label}
         >
           <div className='flex items-center justify-center relative'>
             <div className='relative w-[22px] h-[22px] rounded-full overflow-hidden border border-black/5 shadow-sm'>
-              <Image 
-                src={lang.flag} 
-                alt={lang.label} 
-                fill 
+              <Image
+                src={lang.flag}
+                alt={lang.label}
+                fill
                 className={cn(
-                  "object-cover transition-all duration-500",
-                  locale === lang.code ? "scale-110 grayscale-0" : "scale-100 grayscale-[0.6] opacity-70"
-                )} 
+                  'object-cover transition-transform duration-500',
+                  locale === lang.code
+                    ? 'scale-110 grayscale-0'
+                    : 'scale-100 grayscale-[0.6] opacity-70',
+                )}
               />
             </div>
           </div>

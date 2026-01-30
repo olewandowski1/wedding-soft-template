@@ -1,19 +1,13 @@
 'use client';
 
 import { Gift, Info, Shirt } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import * as React from 'react';
 
 export function InfoSection() {
   const t = useTranslations('InfoSection');
   const tHero = useTranslations('Hero');
-  const containerRef = React.useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start end', 'end start'],
-  });
 
   const infoItems = [
     {
@@ -41,11 +35,10 @@ export function InfoSection() {
 
   return (
     <section
-      ref={containerRef}
       id='info'
       className='relative scroll-mt-24 py-20 sm:py-24 lg:py-32 overflow-hidden bg-background'
     >
-      {/* Background Ornaments */}
+      {/* Static Background */}
       <div className='absolute inset-0 pointer-events-none z-0'>
         <div
           className='absolute inset-0 opacity-[0.02]'
@@ -54,12 +47,7 @@ export function InfoSection() {
               'url("https://grainy-gradients.vercel.app/noise.svg")',
           }}
         />
-        <motion.div
-          style={{
-            y: useTransform(scrollYProgress, [0, 1], [100, -100]),
-          }}
-          className='absolute top-[-5%] left-[-5%] w-[45%] aspect-square bg-primary/10 blur-[130px] rounded-full'
-        />
+        <div className='absolute top-[-5%] left-[-5%] w-[45%] aspect-square bg-primary/10 blur-[130px] rounded-full' />
       </div>
 
       <div className='relative z-10 mx-auto w-full max-w-6xl px-6'>
@@ -71,7 +59,7 @@ export function InfoSection() {
             viewport={{ once: true }}
             className='relative'
           >
-            <span className='font-serif text-[10px] uppercase tracking-[0.8em] text-primary/60 block'>
+            <span className='font-serif text-[10px] uppercase tracking-[0.8em] text-primary/80 block'>
               {t('headerSubtitle')}
             </span>
             <h2 className='font-serif text-5xl sm:text-7xl lg:text-8xl text-foreground font-extralight tracking-tighter italic'>
@@ -106,7 +94,7 @@ export function InfoSection() {
               {/* Minimal Line Identifier */}
               <div className='flex items-center gap-4 mb-8 w-full'>
                 <div className='h-px flex-1 bg-primary/10' />
-                <span className='font-serif text-[10px] uppercase tracking-[0.4em] text-primary/40 whitespace-nowrap'>
+                <span className='font-serif text-[10px] uppercase tracking-[0.4em] text-primary/60 whitespace-nowrap'>
                   {item.label}
                 </span>
                 <div className='h-2 w-2 rounded-full border border-primary/20 shrink-0' />
@@ -118,7 +106,7 @@ export function InfoSection() {
                     <item.icon
                       size={24}
                       strokeWidth={1.2}
-                      className='text-primary/60'
+                      className='text-primary/80'
                     />
                   </div>
                   <h3 className='font-serif text-3xl lg:text-4xl text-foreground font-light italic leading-tight'>
@@ -127,7 +115,7 @@ export function InfoSection() {
                 </div>
 
                 <div className='pl-20'>
-                  <p className='text-lg leading-relaxed text-foreground/70 font-light italic'>
+                  <p className='text-lg leading-relaxed text-foreground/85 font-light italic'>
                     {item.description}
                   </p>
 

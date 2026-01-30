@@ -1,16 +1,14 @@
 'use client';
 
-import * as React from 'react';
-import type { ReactNode } from 'react';
-import Image from 'next/image';
-import { useTranslations } from 'next-intl';
-import { motion, useReducedMotion, type Variants } from 'motion/react';
 import { Button } from '@/components/ui/button';
-import { LanguageSwitcher } from './language-switcher';
+import { motion, useReducedMotion, type Variants } from 'motion/react';
+import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import * as React from 'react';
 
 type HeroProps = {
   locked?: boolean;
-  cta?: ReactNode;
+  cta?: React.ReactNode;
 };
 
 export function Hero({ locked = false, cta }: HeroProps) {
@@ -34,12 +32,11 @@ export function Hero({ locked = false, cta }: HeroProps) {
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30, filter: 'blur(10px)' },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      filter: 'blur(0px)',
-      transition: { duration: 1.5, ease: [0.22, 1, 0.36, 1] as const },
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const },
     },
   };
 
@@ -57,83 +54,20 @@ export function Hero({ locked = false, cta }: HeroProps) {
         }}
       />
 
-      {/* Dynamic Background Elements */}
+      {/* Static Background Elements - No infinite animations */}
       <div className='absolute inset-0 pointer-events-none z-0'>
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.08, 0.12, 0.08],
-            x: [0, 20, 0],
-            y: [0, -20, 0],
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-          className='absolute -top-[10%] -left-[10%] w-[50%] aspect-square bg-primary/5 blur-[120px] rounded-full'
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.04, 0.08, 0.04],
-            x: [0, -30, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 2,
-          }}
-          className='absolute top-[30%] -right-[10%] w-[40%] aspect-square bg-primary/5 blur-[100px] rounded-full'
-        />
-        <motion.div
-          animate={{
-            opacity: [0.02, 0.05, 0.02],
-            y: [0, 50, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 1,
-          }}
-          className='absolute bottom-[10%] left-[20%] w-[25%] aspect-square bg-primary/10 blur-[80px] rounded-full'
-        />
+        <div className='absolute -top-[10%] -left-[10%] w-[50%] aspect-square bg-primary/5 blur-[120px] rounded-full opacity-[0.08]' />
+        <div className='absolute top-[30%] -right-[10%] w-[40%] aspect-square bg-primary/5 blur-[100px] rounded-full opacity-[0.04]' />
+        <div className='absolute bottom-[10%] left-[20%] w-[25%] aspect-square bg-primary/10 blur-[80px] rounded-full opacity-[0.03]' />
       </div>
 
-      {/* Decorative Floating Elements (Petals/Dust) */}
-      {!shouldReduceMotion && mounted && (
-        <div className='absolute inset-0 pointer-events-none z-1'>
-          {[...Array(12)].map((_, i) => (
-            <motion.div
-              key={i}
-              className='absolute h-1 w-1 rounded-full bg-primary/10'
-              initial={{
-                x: Math.random() * 100 + '%',
-                y: Math.random() * 100 + '%',
-                opacity: 0,
-              }}
-              animate={{
-                y: ['-10%', '110%'],
-                x: Math.random() * 20 - 10 + '%',
-                opacity: [0, 0.5, 0],
-              }}
-              transition={{
-                duration: Math.random() * 10 + 10,
-                repeat: Infinity,
-                ease: 'linear',
-                delay: Math.random() * 10,
-              }}
-            />
-          ))}
-        </div>
-      )}
-
       {/* Side Narrative Accents */}
-      <div className='absolute left-8 top-1/2 -translate-y-1/2 hidden 2xl:flex flex-col gap-32 opacity-[0.15] z-10 pointer-events-none'>
+      <div className='absolute left-8 top-1/2 -translate-y-1/2 hidden 2xl:flex flex-col gap-32 opacity-[0.35] z-10 pointer-events-none'>
         <div className='vertical-text font-serif text-[10px] uppercase tracking-[1em] rotate-180 whitespace-nowrap text-primary'>
           {t('est')}
         </div>
       </div>
-      <div className='absolute right-8 top-1/2 -translate-y-1/2 hidden 2xl:flex flex-col gap-32 opacity-[0.15] z-10 pointer-events-none'>
+      <div className='absolute right-8 top-1/2 -translate-y-1/2 hidden 2xl:flex flex-col gap-32 opacity-[0.35] z-10 pointer-events-none'>
         <div className='vertical-text font-serif text-[10px] uppercase tracking-[1em] whitespace-nowrap text-primary'>
           {t('withLove')}
         </div>
@@ -147,34 +81,11 @@ export function Hero({ locked = false, cta }: HeroProps) {
       >
         {/* Header Title Section */}
         <motion.div variants={itemVariants} className='mb-2 relative'>
-          {/* Decorative Ornament Above */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 0.15, y: 0 }}
-            transition={{ delay: 1.5, duration: 2 }}
-            className='absolute -top-16 left-1/2 -translate-x-1/2 hidden sm:block pointer-events-none'
-          >
-            <svg
-              width='80'
-              height='40'
-              viewBox='0 0 100 50'
-              className='text-primary'
-            >
-              <path
-                d='M10 40 C 30 10, 70 10, 90 40'
-                stroke='currentColor'
-                strokeWidth='0.5'
-                fill='none'
-              />
-              <circle cx='50' cy='20' r='1.5' fill='currentColor' />
-            </svg>
-          </motion.div>
-
           {/* Side Accents for H1 Area */}
-          <div className='absolute -left-16 top-1/2 -translate-y-1/2 hidden 2xl:block opacity-10 pointer-events-none'>
+          <div className='absolute -left-16 top-1/2 -translate-y-1/2 hidden 2xl:block opacity-30 pointer-events-none'>
             <div className='h-24 w-px bg-linear-to-b from-transparent via-primary to-transparent' />
           </div>
-          <div className='absolute -right-16 top-1/2 -translate-y-1/2 hidden 2xl:block opacity-10 pointer-events-none'>
+          <div className='absolute -right-16 top-1/2 -translate-y-1/2 hidden 2xl:block opacity-30 pointer-events-none'>
             <div className='h-24 w-px bg-linear-to-b from-transparent via-primary to-transparent' />
           </div>
 
@@ -182,7 +93,7 @@ export function Hero({ locked = false, cta }: HeroProps) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 1 }}
-            className='absolute -top-8 left-1/2 -translate-x-1/2 font-serif text-[9px] uppercase tracking-[0.8em] text-primary/40 hidden sm:flex items-center gap-4 whitespace-nowrap'
+            className='absolute -top-8 left-1/2 -translate-x-1/2 font-serif text-[9px] uppercase tracking-[0.8em] text-primary/70 hidden sm:flex items-center gap-4 whitespace-nowrap'
           >
             <span className='h-px w-10 bg-linear-to-r from-transparent to-primary/20' />
             {t('chapter')}
@@ -206,9 +117,9 @@ export function Hero({ locked = false, cta }: HeroProps) {
             <div className='h-px w-8 bg-primary/20' />
           </div>
           <motion.span
-            animate={{ opacity: [0.3, 0.6, 0.3] }}
+            animate={{ opacity: [0.6, 0.9, 0.6] }}
             transition={{ duration: 4, repeat: Infinity }}
-            className='font-script text-2xl text-primary/40 -mt-2'
+            className='font-script text-2xl text-primary/70 -mt-2'
           >
             {t('story')}
           </motion.span>
@@ -236,43 +147,37 @@ export function Hero({ locked = false, cta }: HeroProps) {
         {/* Image Grid Section - 3 Column Layout */}
         <motion.div
           variants={itemVariants}
-          className='relative mx-auto grid w-full max-w-6xl gap-3 sm:grid-cols-[1fr_0.8fr_1fr] lg:gap-5'
+          className='relative mx-auto grid w-full max-w-6xl gap-3 sm:grid-cols-[1fr_0.8fr_1fr] lg:gap-5 z-0'
         >
-          {/* Decorative Corner Elements */}
-          <div className='absolute -top-20 -left-10 hidden 2xl:block opacity-20 pointer-events-none'>
+          {/* Decorative Corner Elements Rendered First to be Behind */}
+          <div className='absolute -bottom-10 -left-8 hidden 2xl:block opacity-[0.25] pointer-events-none z-0'>
+            <span className='font-script text-[6rem] -rotate-12 text-primary select-none'>
+              Forever
+            </span>
+          </div>
+
+          <div className='absolute -top-10 -right-8 hidden 2xl:block opacity-[0.15] pointer-events-none z-0'>
+            <span className='font-script text-[12rem] text-primary/30 select-none'>
+              Always
+            </span>
+          </div>
+
+          <div className='absolute -top-20 -left-10 hidden 2xl:block opacity-20 pointer-events-none z-0'>
             <p className='font-serif text-[8rem] uppercase tracking-tighter text-primary/10 select-none'>
               2026
             </p>
           </div>
 
           {/* Main Large Image (Left) */}
-          <div className='relative aspect-4/5 w-full overflow-hidden rounded-sm hover:z-20 transition-all shadow-md group'>
-            <motion.div
-              className='absolute inset-0 h-full w-full'
-              animate={
-                shouldReduceMotion
-                  ? {}
-                  : {
-                      scale: [1.1, 1.15, 1.1],
-                      x: [-5, 5, -5],
-                      y: [-5, 5, -5],
-                    }
-              }
-              transition={{
-                duration: 25,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-            >
-              <Image
-                src='/images/4.jpg'
-                alt={t('heroImageAlt')}
-                fill
-                priority
-                sizes='(max-width: 768px) 100vw, 25vw'
-                className='object-cover transition-transform duration-[2s] group-hover:scale-105'
-              />
-            </motion.div>
+          <div className='relative aspect-4/5 w-full overflow-hidden rounded-sm shadow-md group'>
+            <Image
+              src='/images/4.jpg'
+              alt={t('heroImageAlt')}
+              fill
+              priority
+              sizes='(max-width: 768px) 100vw, 25vw'
+              className='object-cover scale-110 transition-transform duration-[2s] group-hover:scale-115'
+            />
             {/* Gloss Overlay */}
             <div className='absolute inset-0 bg-linear-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000' />
           </div>
@@ -280,30 +185,13 @@ export function Hero({ locked = false, cta }: HeroProps) {
           {/* Secondary Stacked Images (Middle) */}
           <div className='flex flex-col gap-3 lg:gap-5'>
             <div className='relative aspect-3/2 w-full overflow-hidden rounded-sm shadow-sm group'>
-              <motion.div
-                className='absolute inset-0 h-full w-full'
-                animate={
-                  shouldReduceMotion
-                    ? {}
-                    : {
-                        scale: [1.1, 1.2, 1.1],
-                        x: [5, -5, 5],
-                      }
-                }
-                transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-              >
-                <Image
-                  src='/images/7.jpg'
-                  alt='Wedding celebration'
-                  fill
-                  sizes='(max-width: 768px) 100vw, 20vw'
-                  className='object-cover transition-transform duration-[2s] group-hover:scale-110'
-                />
-              </motion.div>
+              <Image
+                src='/images/7.jpg'
+                alt='Wedding celebration'
+                fill
+                sizes='(max-width: 768px) 100vw, 20vw'
+                className='object-cover scale-110 transition-transform duration-[2s] group-hover:scale-120'
+              />
               <div className='absolute bottom-2 right-2 opacity-50 pointer-events-none'>
                 <svg width='30' height='30' viewBox='0 0 100 100' fill='none'>
                   <path
@@ -316,72 +204,31 @@ export function Hero({ locked = false, cta }: HeroProps) {
               </div>
             </div>
             <div className='relative aspect-3/2 w-full overflow-hidden rounded-sm grow shadow-sm group'>
-              <motion.div
-                className='absolute inset-0 h-full w-full'
-                animate={
-                  shouldReduceMotion
-                    ? {}
-                    : {
-                        scale: [1.1, 1.15, 1.1],
-                        y: [5, -5, 5],
-                      }
-                }
-                transition={{
-                  duration: 22,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-              >
-                <Image
-                  src='/images/3.jpg'
-                  alt='Wedding moments'
-                  fill
-                  sizes='(max-width: 768px) 100vw, 20vw'
-                  className='object-cover transition-transform duration-[2s] group-hover:scale-110'
-                />
-              </motion.div>
+              <Image
+                src='/images/3.jpg'
+                alt='Wedding moments'
+                fill
+                sizes='(max-width: 768px) 100vw, 20vw'
+                className='object-cover scale-110 transition-transform duration-[2s] group-hover:scale-120'
+              />
               <div className='absolute inset-0 border-[0.5px] border-white/10 m-2 rounded-xs' />
             </div>
           </div>
 
           {/* New Image (Right) */}
-          <div className='relative aspect-4/5 w-full hidden sm:block overflow-hidden rounded-sm hover:z-20 transition-all shadow-md group'>
-            <motion.div
-              className='absolute inset-0 h-full w-full'
-              animate={
-                shouldReduceMotion
-                  ? {}
-                  : {
-                      scale: [1.15, 1.1, 1.15],
-                      x: [5, -5, 5],
-                      y: [5, -5, 5],
-                    }
-              }
-              transition={{
-                duration: 28,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-            >
-              <Image
-                src='/images/5.jpg'
-                alt='Wedding detail'
-                fill
-                sizes='(max-width: 768px) 100vw, 25vw'
-                className='object-cover transition-transform duration-[2s] group-hover:scale-105'
-              />
-            </motion.div>
+          <div className='relative aspect-4/5 w-full hidden sm:block overflow-hidden rounded-sm shadow-md group'>
+            <Image
+              src='/images/5.jpg'
+              alt='Wedding detail'
+              fill
+              sizes='(max-width: 768px) 100vw, 25vw'
+              className='object-cover scale-110 transition-transform duration-[2s] group-hover:scale-115'
+            />
           </div>
 
+          {/* Decorative corner element - static */}
           <div className='absolute -top-1/4 -right-12 hidden 2xl:block opacity-30 mix-blend-multiply pointer-events-none'>
-            <motion.svg
-              animate={{ rotate: 360 }}
-              transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-              width='150'
-              height='150'
-              viewBox='0 0 100 100'
-              fill='none'
-            >
+            <svg width='150' height='150' viewBox='0 0 100 100' fill='none'>
               <circle
                 cx='50'
                 cy='50'
@@ -391,13 +238,7 @@ export function Hero({ locked = false, cta }: HeroProps) {
                 strokeDasharray='1 4'
                 className='text-primary'
               />
-              <path
-                d='M50 5 L 50 15 M 95 50 L 85 50 M 50 95 L 50 85 M 5 50 L 15 50'
-                stroke='currentColor'
-                strokeWidth='0.1'
-                className='text-primary'
-              />
-            </motion.svg>
+            </svg>
           </div>
 
           <div className='absolute -bottom-14 -right-14 hidden xl:block opacity-30 mix-blend-multiply pointer-events-none'>
@@ -431,41 +272,16 @@ export function Hero({ locked = false, cta }: HeroProps) {
             </motion.svg>
           </div>
 
-          {/* New Bottom Left Accent */}
-          <div className='absolute -bottom-10 -left-12 hidden 2xl:block opacity-[0.15] pointer-events-none'>
-            <span className='font-script text-[6rem] -rotate-12 text-primary select-none'>
-              Forever
-            </span>
-          </div>
-
-          <div className='absolute -top-10 -right-20 hidden 2xl:block opacity-[0.05] pointer-events-none'>
-            <span className='font-script text-[12rem] text-primary/30 select-none'>
-              Always
-            </span>
-          </div>
-
+          {/* Decorative corner element - static */}
           <div className='absolute top-1/4 -left-20 hidden 2xl:block opacity-30 mix-blend-multiply pointer-events-none'>
-            <motion.svg
-              animate={{ y: [0, 15, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              width='100'
-              height='100'
-              viewBox='0 0 100 100'
-              fill='none'
-            >
+            <svg width='100' height='100' viewBox='0 0 100 100' fill='none'>
               <path
                 d='M50 10 C 20 40, 80 60, 50 90'
                 stroke='currentColor'
                 strokeWidth='0.1'
                 className='text-primary/40'
               />
-              <path
-                d='M30 30 Q 70 50, 30 70'
-                stroke='currentColor'
-                strokeWidth='0.1'
-                className='text-primary/20'
-              />
-            </motion.svg>
+            </svg>
           </div>
         </motion.div>
       </motion.div>

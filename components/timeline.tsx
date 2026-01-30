@@ -2,23 +2,11 @@
 
 import * as React from 'react';
 import { useTranslations } from 'next-intl';
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from 'motion/react';
+import { motion } from 'motion/react';
 
 export function Timeline() {
   const t = useTranslations('Timeline');
   const tHero = useTranslations('Hero');
-  const shouldReduceMotion = useReducedMotion();
-  const containerRef = React.useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start end', 'end start'],
-  });
 
   const items = [
     {
@@ -61,11 +49,10 @@ export function Timeline() {
 
   return (
     <section
-      ref={containerRef}
       id='timeline'
       className='relative scroll-mt-24 py-20 sm:py-24 lg:py-32 overflow-hidden bg-background'
     >
-      {/* Background Ornaments */}
+      {/* Static Background */}
       <div className='absolute inset-0 pointer-events-none z-0'>
         <div
           className='absolute inset-0 opacity-[0.02]'
@@ -74,12 +61,7 @@ export function Timeline() {
               'url("https://grainy-gradients.vercel.app/noise.svg")',
           }}
         />
-        <motion.div
-          style={{
-            y: useTransform(scrollYProgress, [0, 1], [-100, 100]),
-          }}
-          className='absolute top-[20%] right-[-5%] w-[40%] aspect-square bg-primary/5 blur-[120px] rounded-full'
-        />
+        <div className='absolute top-[20%] right-[-5%] w-[40%] aspect-square bg-primary/5 blur-[120px] rounded-full' />
       </div>
 
       <div className='relative z-10 mx-auto w-full max-w-5xl px-6'>
@@ -91,7 +73,7 @@ export function Timeline() {
             viewport={{ once: true }}
             className='relative'
           >
-            <span className='font-serif text-[10px] uppercase tracking-[0.8em] text-primary/60 block'>
+            <span className='font-serif text-[10px] uppercase tracking-[0.8em] text-primary/80 block'>
               {t('headerSubtitle')}
             </span>
             <h2 className='font-serif text-5xl sm:text-7xl lg:text-8xl text-foreground font-extralight tracking-tighter italic'>
@@ -151,7 +133,7 @@ function TimelineItem({
       <div
         className={`flex flex-col px-0 md:px-12 ${isEven ? 'md:items-end text-left md:text-right' : 'md:order-2 md:items-start text-left'}`}
       >
-        <div className='flex items-center gap-4 text-primary/60 mb-1 lg:mb-2 lg:direction-rtl'>
+        <div className='flex items-center gap-4 text-primary/80 mb-1 lg:mb-2 lg:direction-rtl'>
           <span className='font-serif text-base tracking-widest uppercase'>
             {item.time}
           </span>
@@ -179,7 +161,7 @@ function TimelineItem({
             {item.id.slice(0, 1)}
           </div>
 
-          <p className='text-lg leading-relaxed text-foreground/70 font-light font-serif italic relative z-10'>
+          <p className='text-lg leading-relaxed text-foreground/85 font-light font-serif italic relative z-10'>
             {item.description}
           </p>
 

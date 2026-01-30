@@ -12,6 +12,7 @@ import { siteConfig } from '@/config/site';
 export function Navigation() {
   const t = useTranslations('Navigation');
   const shouldReduceMotion = useReducedMotion();
+
   const navRoutes = React.useMemo(
     () => [
       { name: t('home'), href: '#hero' },
@@ -30,192 +31,201 @@ export function Navigation() {
   const [activeSection, setActiveSection] = React.useState('hero');
   const [scrolled, setScrolled] = React.useState(false);
 
-  React.useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
-
   const navRef = React.useRef<HTMLElement | null>(null);
-  const sectionIds = React.useMemo(
-    () => navRoutes.map((route) => route.href.replace('#', '')),
-    [navRoutes],
-  );
+  const rafRef = React.useRef<number | null>(null);
+
   const isAutoScrollingRef = React.useRef(false);
   const autoScrollTimeoutRef = React.useRef<ReturnType<
     typeof setTimeout
   > | null>(null);
 
+  const sectionIds = React.useMemo(
+    () => navRoutes.map((r) => r.href.replace('#', '')),
+    [navRoutes],
+  );
+
+  /* ------------------------------------------------------------------ */
+  /* Body scroll lock (mobile menu)                                      */
+  /* ------------------------------------------------------------------ */
   React.useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+    document.body.style.overflow = isOpen ? 'hidden' : 'unset';
+    return () => {
+      document.body.style.overflow = 'unset';
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isOpen]);
+
+  /* ------------------------------------------------------------------ */
+  /* Scrolled state                                                      */
+  /* ------------------------------------------------------------------ */
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  /* ------------------------------------------------------------------ */
+  /* Smooth scroll                                                       */
+  /* ------------------------------------------------------------------ */
   const scrollToSection = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string,
   ) => {
     e.preventDefault();
     const id = href.replace('#', '');
-    const element = document.getElementById(id);
-    if (element) {
-      if (autoScrollTimeoutRef.current) {
-        clearTimeout(autoScrollTimeoutRef.current);
-      }
-      isAutoScrollingRef.current = true;
-      const offset = (navRef.current?.offsetHeight ?? 0) + 16;
-      const top = element.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top, behavior: 'smooth' });
-      setIsOpen(false);
-      setActiveSection(id);
-      window.history.replaceState(null, '', href);
-      autoScrollTimeoutRef.current = setTimeout(() => {
-        isAutoScrollingRef.current = false;
-      }, 700);
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    if (autoScrollTimeoutRef.current) {
+      clearTimeout(autoScrollTimeoutRef.current);
     }
+
+    isAutoScrollingRef.current = true;
+
+    const offset = (navRef.current?.offsetHeight ?? 0) + 16;
+    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+
+    window.scrollTo({ top, behavior: 'smooth' });
+
+    setIsOpen(false);
+    setActiveSection(id);
+    window.history.replaceState(null, '', href);
+
+    autoScrollTimeoutRef.current = setTimeout(() => {
+      isAutoScrollingRef.current = false;
+    }, 700);
   };
 
-  const updateActiveSection = React.useCallback(() => {
-    if (isAutoScrollingRef.current) return;
-    const offset = (navRef.current?.offsetHeight ?? 0) + 40;
-    let current = sectionIds[0];
-
-    sectionIds.forEach((id) => {
-      const element = document.getElementById(id);
-      if (!element) return;
-
-      const top = element.getBoundingClientRect().top;
-      if (top - offset <= 0) {
-        current = id;
-      }
-    });
-
-    setActiveSection(current);
-  }, [sectionIds]);
-
+  /* ------------------------------------------------------------------ */
+  /* Sync hash                                                           */
+  /* ------------------------------------------------------------------ */
   React.useEffect(() => {
     if (isAutoScrollingRef.current) return;
-    const newHash = `#${activeSection}`;
-    if (window.location.hash !== newHash) {
-      window.history.replaceState(null, '', newHash);
+    const hash = `#${activeSection}`;
+    if (window.location.hash !== hash) {
+      window.history.replaceState(null, '', hash);
     }
   }, [activeSection]);
 
+  /* ------------------------------------------------------------------ */
+  /* Initial hash                                                        */
+  /* ------------------------------------------------------------------ */
   React.useEffect(() => {
     const hash = window.location.hash.replace('#', '');
-    if (hash && sectionIds.includes(hash)) {
-      setActiveSection(hash);
-      const element = document.getElementById(hash);
-      if (element) {
-        setTimeout(() => {
-          const offset = (navRef.current?.offsetHeight ?? 0) + 16;
-          const top =
-            element.getBoundingClientRect().top + window.scrollY - offset;
-          window.scrollTo({ top, behavior: 'smooth' });
-        }, 100);
-      }
-    }
-  }, []); // Run only on mount
+    if (!hash || !sectionIds.includes(hash)) return;
 
+    setActiveSection(hash);
+    const el = document.getElementById(hash);
+    if (!el) return;
+
+    setTimeout(() => {
+      const offset = (navRef.current?.offsetHeight ?? 0) + 16;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }, 100);
+  }, [sectionIds]);
+
+  /* ------------------------------------------------------------------ */
+  /* RAF active section detection                                        */
+  /* ------------------------------------------------------------------ */
   React.useEffect(() => {
-    let rafId = 0;
+    const updateActiveSection = () => {
+      if (isAutoScrollingRef.current) return;
+
+      const offset = (navRef.current?.offsetHeight ?? 0) + 24;
+      let current = sectionIds[0];
+
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+
+        if (el.getBoundingClientRect().top - offset <= 0) {
+          current = id;
+        }
+      }
+
+      setActiveSection(current);
+    };
+
     const onScroll = () => {
-      if (rafId) return;
-      rafId = window.requestAnimationFrame(() => {
+      if (rafRef.current) return;
+      rafRef.current = window.requestAnimationFrame(() => {
         updateActiveSection();
-        rafId = 0;
+        rafRef.current = null;
       });
     };
 
-    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
 
+    onScroll();
+
     return () => {
-      if (rafId) window.cancelAnimationFrame(rafId);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
-      if (autoScrollTimeoutRef.current) {
-        clearTimeout(autoScrollTimeoutRef.current);
-      }
     };
-  }, [updateActiveSection]);
+  }, [sectionIds]);
+
+  /* ================================================================== */
+  /* UI                                                                 */
+  /* ================================================================== */
 
   return (
     <>
       <motion.header
         ref={navRef}
-        initial={
-          shouldReduceMotion
-            ? { opacity: 1 }
-            : { opacity: 0, y: -20, filter: 'blur(10px)' }
-        }
-        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-        transition={{ duration: 1.2, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
-          'fixed top-0 z-50 w-full px-6 transition-all duration-500 pointer-events-none',
+          'fixed top-0 z-50 w-full px-6 transition-[padding] duration-500 pointer-events-none',
           scrolled ? 'py-8' : 'py-10',
         )}
       >
-        <div className='max-w-7xl mx-auto flex items-center justify-center relative'>
+        <div className='relative mx-auto flex max-w-7xl items-center justify-center'>
           <nav
             className={cn(
-              'hidden lg:flex items-center justify-center gap-1 rounded-full px-2 py-1.5 transition-all duration-500 pointer-events-auto',
+              'hidden lg:flex items-center gap-1 rounded-full px-2 py-1.5 pointer-events-auto transition-all duration-500',
               scrolled
-                ? 'bg-white/80 backdrop-blur-xl shadow-[0_8px_32px_-4px_rgba(74,66,59,0.12),0_1px_4px_rgba(74,66,59,0.05)] border border-white/60 ring-1 ring-black/[0.05]'
-                : 'bg-transparent border-transparent shadow-none ring-0 backdrop-blur-none',
+                ? 'bg-white/80 backdrop-blur-md shadow-lg border border-white/60'
+                : 'bg-transparent',
             )}
           >
-            <div className='hidden items-center lg:flex'>
-              {navRoutes.map((route) => {
-                const isActive = activeSection === route.href.replace('#', '');
-                return (
-                  <Link
-                    key={route.href}
-                    href={route.href}
-                    onClick={(e) => scrollToSection(e, route.href)}
-                    className={cn(
-                      'relative px-6 py-2.5 text-[10px] font-medium uppercase tracking-[0.4em] transition-all duration-500',
-                      isActive
-                        ? 'text-primary'
-                        : scrolled
-                          ? 'text-[#4a423b]/60 hover:text-primary'
-                          : 'text-[#4a423b]/40 hover:text-primary',
-                    )}
-                  >
-                    <span className='relative z-10'>{route.name}</span>
-                    {isActive && (
-                      <motion.div
-                        layoutId='activeSection'
-                        className='absolute inset-0 rounded-full bg-primary/[0.03] border border-primary/10 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]'
-                        transition={{
-                          type: 'spring',
-                          stiffness: 400,
-                          damping: 30,
-                        }}
-                      />
-                    )}
-                  </Link>
-                );
-              })}
-            </div>
+            {navRoutes.map((route) => {
+              const isActive = activeSection === route.href.replace('#', '');
+
+              return (
+                <Link
+                  key={route.href}
+                  href={route.href}
+                  onClick={(e) => scrollToSection(e, route.href)}
+                  className={cn(
+                    'relative px-6 py-2.5 text-[10px] uppercase tracking-[0.4em] transition-colors',
+                    isActive
+                      ? 'text-primary'
+                      : 'text-foreground/70 hover:text-primary',
+                  )}
+                >
+                  <span className='relative z-10'>{route.name}</span>
+                  {isActive && (
+                    <motion.div
+                      layoutId='active-pill'
+                      className='absolute inset-0 rounded-full bg-primary/[0.04]'
+                      transition={{
+                        type: 'tween',
+                        duration: 0.2,
+                        ease: [0.25, 0.1, 0.25, 1],
+                      }}
+                    />
+                  )}
+                </Link>
+              );
+            })}
           </nav>
 
           <button
-            className={cn(
-              'flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-full transition-all lg:hidden pointer-events-auto absolute right-0 top-1/2 -translate-y-1/2',
-              scrolled ? '' : 'bg-transparent border-none shadow-none',
-              isOpen && 'opacity-0 scale-90 pointer-events-none',
-            )}
             onClick={() => setIsOpen(true)}
+            className='absolute right-0 top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full lg:hidden pointer-events-auto'
           >
             <MenuIcon className='h-6 w-6 text-foreground' />
           </button>
@@ -225,67 +235,48 @@ export function Navigation() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            id='mobile-navigation'
-            initial={{ opacity: 0, scale: 1.1 }}
+            initial={{ opacity: 0, scale: 1.05 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.1 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className='fixed inset-0 flex flex-col items-center justify-center lg:hidden bg-background z-[100] pointer-events-auto shadow-2xl overflow-hidden'
+            exit={{ opacity: 0, scale: 1.05 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className='fixed inset-0 z-[100] flex flex-col bg-background lg:hidden'
           >
-            {/* Decorative background logo/watermark */}
-            <div className='absolute -bottom-10 -right-10 opacity-[0.03] pointer-events-none transform rotate-12 select-none'>
-              <span className='font-script text-[15rem] text-primary whitespace-nowrap lg:text-[20rem]'>
-                {siteConfig.NAME}
-              </span>
-            </div>
-
-            {/* Top Bar */}
-            <div className='absolute top-8 left-0 right-0 px-10 flex items-center justify-between'>
-              <div className='font-serif text-[10px] uppercase tracking-[0.6em] text-primary/40'>
-                Menu . 2026
+            <div className='flex items-center justify-between px-10 pt-8'>
+              <div className='text-xs uppercase tracking-[0.6em] text-primary/70'>
+                Menu · 2026
               </div>
-
-              <button
-                onClick={() => setIsOpen(false)}
-                className='h-12 w-12 flex items-center justify-end bg-transparent transition-transform active:scale-90 duration-300'
-              >
+              <button onClick={() => setIsOpen(false)}>
                 <XIcon className='h-6 w-6 text-foreground' />
-                <span className='sr-only'>Close Menu</span>
               </button>
             </div>
 
-            {/* Centered Language Switcher */}
             <div className='absolute top-8 left-1/2 -translate-x-1/2'>
               <LanguageSwitcher />
             </div>
 
-            <nav className='flex flex-col gap-0 w-full px-10 mt-12'>
+            <nav className='mt-16 px-10'>
               {navRoutes.map((route, i) => {
                 const isActive = activeSection === route.href.replace('#', '');
+
                 return (
                   <motion.div
                     key={route.href}
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: -16 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 + 0.2 }}
+                    transition={{ delay: i * 0.05 + 0.15 }}
                   >
                     <Link
                       href={route.href}
                       onClick={(e) => scrollToSection(e, route.href)}
                       className={cn(
-                        'group relative flex items-center py-5 border-b border-border/40 transition-all duration-500',
+                        'flex items-center border-b py-5',
                         isActive ? 'text-primary' : 'text-foreground/80',
                       )}
                     >
-                      <span
-                        className={cn(
-                          'font-serif text-4xl tracking-tight transition-transform duration-500 group-hover:translate-x-2 mr-auto',
-                          isActive ? 'italic' : '',
-                        )}
-                      >
+                      <span className='mr-auto font-serif text-4xl'>
                         {route.name}
                       </span>
-                      <span className='font-serif text-[14px] opacity-30 tracking-widest pt-2 tabular-nums'>
+                      <span className='opacity-50'>
                         {(i + 1).toString().padStart(2, '0')}
                       </span>
                     </Link>
@@ -293,23 +284,19 @@ export function Navigation() {
                 );
               })}
             </nav>
+
+            <div className='pointer-events-none absolute -bottom-10 -right-10 rotate-12 opacity-[0.03]'>
+              <span className='font-script text-[15rem] text-primary'>
+                {siteConfig.NAME}
+              </span>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Detached Language Switcher - Floating bottom right */}
-      <motion.div
-        initial={
-          shouldReduceMotion
-            ? { opacity: 1 }
-            : { opacity: 0, scale: 0.9, filter: 'blur(10px)' }
-        }
-        animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-        transition={{ duration: 1, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        className='fixed bottom-8 right-12 z-40 hidden lg:block'
-      >
+      <div className='fixed bottom-8 right-12 z-40 hidden lg:block'>
         <LanguageSwitcher />
-      </motion.div>
+      </div>
     </>
   );
 }

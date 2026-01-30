@@ -39,14 +39,7 @@ export function Gallery() {
               'url("https://grainy-gradients.vercel.app/noise.svg")',
           }}
         />
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.03, 0.05, 0.03],
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
-          className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] aspect-square bg-primary/10 blur-[130px] rounded-full'
-        />
+        <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] aspect-square bg-primary/10 blur-[130px] rounded-full opacity-[0.04]' />
       </div>
 
       <div className='relative z-10 mx-auto w-full max-w-6xl px-6'>
@@ -81,7 +74,7 @@ export function Gallery() {
 
             <motion.div
               style={{ y: y1, rotate: -12 }}
-              className='absolute -translate-x-12 w-56 h-68 sm:w-60 sm:h-72 bg-white p-2.5 pb-10 shadow-2xl z-10 border border-black/5 opacity-40'
+              className='absolute -translate-x-12 w-56 h-68 sm:w-60 sm:h-72 bg-white p-2.5 pb-10 shadow-2xl z-10 border border-black/5 opacity-40 will-change-transform'
             >
               <div className='relative w-full h-full overflow-hidden bg-muted'>
                 <Image
@@ -96,7 +89,7 @@ export function Gallery() {
 
             <motion.div
               style={{ y: y3, rotate: 8 }}
-              className='absolute translate-x-4 translate-y-4 w-60 h-72 sm:w-64 sm:h-80 bg-white p-3 pb-12 shadow-xl z-20 border border-black/5'
+              className='absolute translate-x-4 translate-y-4 w-60 h-72 sm:w-64 sm:h-80 bg-white p-3 pb-12 shadow-xl z-20 border border-black/5 will-change-transform'
             >
               <div className='relative w-full h-full overflow-hidden bg-muted'>
                 <Image
@@ -114,7 +107,7 @@ export function Gallery() {
 
             <motion.div
               style={{ y: y2, rotate: -4 }}
-              className='absolute -translate-x-4 -translate-y-8 w-60 h-72 sm:w-64 sm:h-80 bg-white p-3 pb-12 shadow-2xl z-30 border border-black/5'
+              className='absolute -translate-x-4 -translate-y-8 w-60 h-72 sm:w-64 sm:h-80 bg-white p-3 pb-12 shadow-2xl z-30 border border-black/5 will-change-transform'
             >
               <div className='relative w-full h-full overflow-hidden bg-muted'>
                 <Image
@@ -156,7 +149,7 @@ export function Gallery() {
                 href='#' // Replace with your Google Doc / Drive link
                 target='_blank'
                 rel='noopener noreferrer'
-                className='relative group flex items-center justify-center px-12 py-4 overflow-hidden rounded-full bg-primary text-primary-foreground transition-all hover:scale-[1.02] active:scale-[0.98] shadow-2xl shadow-primary/20'
+                className='relative group flex items-center justify-center px-12 py-4 overflow-hidden rounded-full bg-primary text-primary-foreground transition-[transform,box-shadow,background-color] hover:scale-[1.02] active:scale-[0.98] shadow-2xl shadow-primary/20'
               >
                 <div className='absolute inset-0 bg-linear-to-tr from-white/10 to-transparent pointer-events-none' />
                 <span className='relative font-serif text-xl italic tracking-widest flex items-center'>

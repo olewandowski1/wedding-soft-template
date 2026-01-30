@@ -73,7 +73,7 @@ export function AccessGate({ unlockAction }: AccessGateProps) {
             <div className='flex flex-col items-center text-center gap-4'>
               <div className='relative w-16 h-16 flex items-center justify-center rounded-full border border-primary/10 bg-primary/[0.03] mb-2'>
                 <LockIcon className='w-6 h-6 text-primary/40' />
-                <div className='absolute inset-1 rounded-full border border-primary/5 animate-pulse' />
+                <div className='absolute inset-1 rounded-full border border-primary/5' />
               </div>
 
               <div className='space-y-2'>
@@ -100,7 +100,7 @@ export function AccessGate({ unlockAction }: AccessGateProps) {
                   type='password'
                   autoComplete='current-password'
                   required
-                  className='h-12 rounded-xl bg-primary/[0.02] border-primary/10 focus-visible:ring-primary/20 focus-visible:border-primary/30 transition-all font-serif italic text-lg text-center tracking-widest'
+                  className='h-12 rounded-xl bg-primary/[0.02] border-primary/10 focus-visible:ring-primary/20 focus-visible:border-primary/30 transition-[background-color,border-color,box-shadow] font-serif italic text-lg text-center tracking-widest'
                 />
               </div>
 
@@ -138,7 +138,7 @@ export function AccessGate({ unlockAction }: AccessGateProps) {
               <Button
                 type='submit'
                 disabled={isPending}
-                className='w-full h-12 rounded-full font-serif text-lg italic tracking-widest shadow-lg shadow-primary/10 active:scale-[0.98] transition-all'
+                className='w-full h-12 rounded-full font-serif text-lg italic tracking-widest shadow-lg shadow-primary/10 active:scale-[0.98] transition-[transform,box-shadow]'
               >
                 {isPending ? t('checking') : t('unlock')}
               </Button>

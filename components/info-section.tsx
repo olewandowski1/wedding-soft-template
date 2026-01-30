@@ -15,21 +15,21 @@ export function InfoSection() {
       icon: Shirt,
       title: t('dressCode.title'),
       description: t('dressCode.description'),
-      label: 'Style',
+      label: t('labels.style'),
     },
     {
       id: 'gifts',
       icon: Gift,
       title: t('gifts.title'),
       description: t('gifts.description'),
-      label: 'Gift',
+      label: t('labels.gift'),
     },
     {
       id: 'additional',
       icon: Info,
       title: t('additionalInfo.title'),
       description: t('additionalInfo.description'),
-      label: 'Note',
+      label: t('labels.note'),
     },
   ];
 

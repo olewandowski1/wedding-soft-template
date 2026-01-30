@@ -16,7 +16,12 @@
     "chapter": "Chapter I",
     "story": "Our Love Story",
     "est": "Est . September . 2026",
-    "withLove": "With Love & Joy"
+    "withLove": "With Love & Joy",
+    "decorative": {
+      "forever": "Forever",
+      "always": "Always",
+      "year": "2026"
+    }
   },
   "AccessGate": {
     "trigger": "Get Access",
@@ -67,6 +72,11 @@
     "additionalInfo": {
       "title": "Additional Information",
       "description": "On-site parking and accommodation tips will be shared closer to the date."
+    },
+    "labels": {
+      "style": "Style",
+      "gift": "Gift",
+      "note": "Note"
     }
   },
   "Navigation": {
@@ -79,7 +89,8 @@
     "gallery": "Gallery",
     "rsvp": "RSVP",
     "menuOpen": "Menu",
-    "menuClose": "Close"
+    "menuClose": "Close",
+    "menuYear": "Menu · 2026"
   },
   "Timeline": {
     "headerSubtitle": "Flow of the Day",

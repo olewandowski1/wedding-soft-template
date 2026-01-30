@@ -16,7 +16,12 @@
     "chapter": "Rozdział I",
     "story": "Nasza Historia Miłości",
     "est": "12 . Września . 2026",
-    "withLove": "Z Miłością i Radością"
+    "withLove": "Z Miłością i Radością",
+    "decorative": {
+      "forever": "Na zawsze",
+      "always": "Zawsze",
+      "year": "2026"
+    }
   },
   "AccessGate": {
     "trigger": "Uzyskaj Dostęp",
@@ -67,6 +72,11 @@
     "additionalInfo": {
       "title": "Dodatkowe Informacje",
       "description": "Parking przy obiekcie oraz wskazówki noclegowe podamy bliżej terminu."
+    },
+    "labels": {
+      "style": "Styl",
+      "gift": "Prezent",
+      "note": "Notatka"
     }
   },
   "Navigation": {
@@ -79,7 +89,8 @@
     "gallery": "Galeria",
     "rsvp": "RSVP",
     "menuOpen": "Menu",
-    "menuClose": "Zamknij"
+    "menuClose": "Zamknij",
+    "menuYear": "Menu · 2026"
   },
   "Timeline": {
     "headerSubtitle": "Przebieg Dnia",

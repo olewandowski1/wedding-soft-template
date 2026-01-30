@@ -142,19 +142,19 @@ export function Hero({ cta }: HeroProps) {
           {/* Decorative Corner Elements Rendered First to be Behind */}
           <div className='absolute -bottom-10 -left-8 hidden 2xl:block opacity-[0.25] pointer-events-none z-0'>
             <span className='font-script text-[6rem] -rotate-12 text-primary select-none'>
-              Forever
+              {t('decorative.forever')}
             </span>
           </div>
 
           <div className='absolute -top-10 -right-8 hidden 2xl:block opacity-[0.15] pointer-events-none z-0'>
             <span className='font-script text-[12rem] text-primary/30 select-none'>
-              Always
+              {t('decorative.always')}
             </span>
           </div>
 
           <div className='absolute -top-20 -left-10 hidden 2xl:block opacity-20 pointer-events-none z-0'>
             <p className='font-serif text-[8rem] uppercase tracking-tighter text-primary/10 select-none'>
-              2026
+              {t('decorative.year')}
             </p>
           </div>
 

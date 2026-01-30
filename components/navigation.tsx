@@ -32,8 +32,6 @@ export function Navigation() {
   const [scrolled, setScrolled] = React.useState(false);
 
   const navRef = React.useRef<HTMLElement | null>(null);
-  const rafRef = React.useRef<number | null>(null);
-
   const isAutoScrollingRef = React.useRef(false);
   const autoScrollTimeoutRef = React.useRef<ReturnType<
     typeof setTimeout
@@ -44,131 +42,117 @@ export function Navigation() {
     [navRoutes],
   );
 
-  /* ------------------------------------------------------------------ */
-  /* Body scroll lock (mobile menu)                                      */
-  /* ------------------------------------------------------------------ */
+  // Handle body scroll locking when mobile menu is open
   React.useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : 'unset';
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
     return () => {
       document.body.style.overflow = 'unset';
     };
   }, [isOpen]);
 
-  /* ------------------------------------------------------------------ */
-  /* Scrolled state                                                      */
-  /* ------------------------------------------------------------------ */
+  // Handle scroll state for navbar styling
   React.useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  /* ------------------------------------------------------------------ */
-  /* Smooth scroll                                                       */
-  /* ------------------------------------------------------------------ */
-  const scrollToSection = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string,
-  ) => {
-    e.preventDefault();
-    const id = href.replace('#', '');
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    if (autoScrollTimeoutRef.current) {
-      clearTimeout(autoScrollTimeoutRef.current);
-    }
-
-    isAutoScrollingRef.current = true;
-
-    const offset = (navRef.current?.offsetHeight ?? 0) + 16;
-    const top = el.getBoundingClientRect().top + window.scrollY - offset;
-
-    window.scrollTo({ top, behavior: 'smooth' });
-
-    setIsOpen(false);
-    setActiveSection(id);
-    window.history.replaceState(null, '', href);
-
-    autoScrollTimeoutRef.current = setTimeout(() => {
-      isAutoScrollingRef.current = false;
-    }, 700);
-  };
-
-  /* ------------------------------------------------------------------ */
-  /* Sync hash                                                           */
-  /* ------------------------------------------------------------------ */
+  // Intersection Observer for active section tracking
   React.useEffect(() => {
     if (isAutoScrollingRef.current) return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px', // Adjusted to trigger when section is in the upper part of the viewport
+      threshold: 0,
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      if (isAutoScrollingRef.current) return;
+
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          setActiveSection(id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions,
+    );
+
+    sectionIds.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, [sectionIds]);
+
+  // Update URL hash when active section changes (avoiding jitter during auto-scroll)
+  React.useEffect(() => {
+    if (isAutoScrollingRef.current) return;
+
     const hash = `#${activeSection}`;
     if (window.location.hash !== hash) {
       window.history.replaceState(null, '', hash);
     }
   }, [activeSection]);
 
-  /* ------------------------------------------------------------------ */
-  /* Initial hash                                                        */
-  /* ------------------------------------------------------------------ */
+  // Initial scroll to hash if present
   React.useEffect(() => {
     const hash = window.location.hash.replace('#', '');
-    if (!hash || !sectionIds.includes(hash)) return;
-
-    setActiveSection(hash);
-    const el = document.getElementById(hash);
-    if (!el) return;
-
-    setTimeout(() => {
-      const offset = (navRef.current?.offsetHeight ?? 0) + 16;
-      const top = el.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }, 100);
-  }, [sectionIds]);
-
-  /* ------------------------------------------------------------------ */
-  /* RAF active section detection                                        */
-  /* ------------------------------------------------------------------ */
-  React.useEffect(() => {
-    const updateActiveSection = () => {
-      if (isAutoScrollingRef.current) return;
-
-      const offset = (navRef.current?.offsetHeight ?? 0) + 24;
-      let current = sectionIds[0];
-
-      for (const id of sectionIds) {
-        const el = document.getElementById(id);
-        if (!el) continue;
-
-        if (el.getBoundingClientRect().top - offset <= 0) {
-          current = id;
-        }
+    if (hash && sectionIds.includes(hash)) {
+      setActiveSection(hash);
+      const element = document.getElementById(hash);
+      if (element) {
+        // Use a slight delay to ensure the page is fully ready
+        const timer = setTimeout(() => {
+          const offset = (navRef.current?.offsetHeight ?? 0) + 16;
+          const top =
+            element.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }, 100);
+        return () => clearTimeout(timer);
       }
-
-      setActiveSection(current);
-    };
-
-    const onScroll = () => {
-      if (rafRef.current) return;
-      rafRef.current = window.requestAnimationFrame(() => {
-        updateActiveSection();
-        rafRef.current = null;
-      });
-    };
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-
-    onScroll();
-
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-    };
+    }
   }, [sectionIds]);
 
-  /* ================================================================== */
-  /* UI                                                                 */
-  /* ================================================================== */
+  const scrollToSection = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    e.preventDefault();
+    const id = href.replace('#', '');
+    const element = document.getElementById(id);
+    if (!element) return;
+
+    if (autoScrollTimeoutRef.current) {
+      clearTimeout(autoScrollTimeoutRef.current);
+    }
+
+    isAutoScrollingRef.current = true;
+    setActiveSection(id);
+    window.history.replaceState(null, '', href);
+
+    const offset = (navRef.current?.offsetHeight ?? 0) + 16;
+    const top = element.getBoundingClientRect().top + window.scrollY - offset;
+
+    window.scrollTo({ top, behavior: 'smooth' });
+    setIsOpen(false);
+
+    autoScrollTimeoutRef.current = setTimeout(() => {
+      isAutoScrollingRef.current = false;
+    }, 1000); // Wait longer for smooth scroll to finish
+  };
 
   return (
     <>
@@ -242,8 +226,8 @@ export function Navigation() {
             className='fixed inset-0 z-[100] flex flex-col bg-background lg:hidden'
           >
             <div className='flex items-center justify-between px-10 pt-8'>
-              <div className='text-xs uppercase tracking-[0.6em] text-primary/70'>
-                Menu · 2026
+              <div className='text-xs uppercase font-serif tracking-[0.6em] text-primary/70'>
+                {t('menuYear')}
               </div>
               <button onClick={() => setIsOpen(false)}>
                 <XIcon className='h-6 w-6 text-foreground' />

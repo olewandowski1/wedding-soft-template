@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import * as React from 'react';
 import { LanguageSwitcher } from './language-switcher';
+import { siteConfig } from '@/config/site';
 
 export function Navigation() {
   const t = useTranslations('Navigation');
@@ -28,6 +29,17 @@ export function Navigation() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [activeSection, setActiveSection] = React.useState('hero');
   const [scrolled, setScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   const navRef = React.useRef<HTMLElement | null>(null);
   const sectionIds = React.useMemo(
@@ -150,7 +162,7 @@ export function Navigation() {
         transition={{ duration: 1.2, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
           'fixed top-0 z-50 w-full px-6 transition-all duration-500 pointer-events-none',
-          scrolled ? 'py-6' : 'py-8',
+          scrolled ? 'py-8' : 'py-10',
         )}
       >
         <div className='max-w-7xl mx-auto flex items-center justify-center relative'>
@@ -200,93 +212,90 @@ export function Navigation() {
           <button
             className={cn(
               'flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-full transition-all lg:hidden pointer-events-auto absolute right-0 top-1/2 -translate-y-1/2',
-              scrolled
-                ? 'bg-white backdrop-blur-sm border border-white/40 shadow-[0_4px_16px_rgba(74,66,59,0.08)]'
-                : 'bg-transparent border-none shadow-none',
+              scrolled ? '' : 'bg-transparent border-none shadow-none',
               isOpen && 'opacity-0 scale-90 pointer-events-none',
             )}
             onClick={() => setIsOpen(true)}
           >
             <MenuIcon className='h-6 w-6 text-foreground' />
           </button>
-
-          <AnimatePresence>
-            {isOpen && (
-              <motion.div
-                id='mobile-navigation'
-                initial={{ opacity: 0, scale: 1.1 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.1 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className='fixed inset-0 flex flex-col items-center justify-center lg:hidden bg-[#fdfcf9] z-[100] pointer-events-auto shadow-2xl overflow-hidden'
-              >
-                {/* Decorative background logo/watermark */}
-                <div className='absolute -bottom-20 -right-20 opacity-[0.03] pointer-events-none transform rotate-12'>
-                  <span className='font-script text-[30rem] text-primary'>
-                    Z&J
-                  </span>
-                </div>
-
-                {/* Integrated Close Button */}
-                <div className='absolute top-8 right-10'>
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className='h-12 w-12 flex items-center justify-center bg-transparent transition-transform active:scale-90 duration-300'
-                  >
-                    <XIcon className='h-6 w-6 text-foreground' />
-                    <span className='sr-only'>Close Menu</span>
-                  </button>
-                </div>
-
-                {/* Menu Title */}
-                <div className='absolute top-12 left-10 font-serif text-[10px] uppercase tracking-[0.6em] text-primary/40'>
-                  Menu . 2026
-                </div>
-
-                <nav className='flex flex-col gap-0 w-full px-10'>
-                  {navRoutes.map((route, i) => {
-                    const isActive =
-                      activeSection === route.href.replace('#', '');
-                    return (
-                      <motion.div
-                        key={route.href}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: i * 0.05 + 0.2 }}
-                      >
-                        <Link
-                          href={route.href}
-                          onClick={(e) => scrollToSection(e, route.href)}
-                          className={cn(
-                            'group relative flex items-center py-5 border-b border-border/40 transition-all duration-500',
-                            isActive ? 'text-primary' : 'text-foreground/80',
-                          )}
-                        >
-                          <span
-                            className={cn(
-                              'font-serif text-4xl tracking-tight transition-transform duration-500 group-hover:translate-x-2 mr-auto',
-                              isActive ? 'italic' : '',
-                            )}
-                          >
-                            {route.name}
-                          </span>
-                          <span className='font-serif text-[14px] opacity-30 tracking-widest pt-2 tabular-nums'>
-                            {(i + 1).toString().padStart(2, '0')}
-                          </span>
-                        </Link>
-                      </motion.div>
-                    );
-                  })}
-                </nav>
-
-                <div className='absolute bottom-8 flex flex-col items-center gap-8'>
-                  <LanguageSwitcher />
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
         </div>
       </motion.header>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            id='mobile-navigation'
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.1 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className='fixed inset-0 flex flex-col items-center justify-center lg:hidden bg-background z-[100] pointer-events-auto shadow-2xl overflow-hidden'
+          >
+            {/* Decorative background logo/watermark */}
+            <div className='absolute -bottom-10 -right-10 opacity-[0.03] pointer-events-none transform rotate-12 select-none'>
+              <span className='font-script text-[15rem] text-primary whitespace-nowrap lg:text-[20rem]'>
+                {siteConfig.NAME}
+              </span>
+            </div>
+
+            {/* Top Bar */}
+            <div className='absolute top-8 left-0 right-0 px-10 flex items-center justify-between'>
+              <div className='font-serif text-[10px] uppercase tracking-[0.6em] text-primary/40'>
+                Menu . 2026
+              </div>
+
+              <button
+                onClick={() => setIsOpen(false)}
+                className='h-12 w-12 flex items-center justify-end bg-transparent transition-transform active:scale-90 duration-300'
+              >
+                <XIcon className='h-6 w-6 text-foreground' />
+                <span className='sr-only'>Close Menu</span>
+              </button>
+            </div>
+
+            {/* Centered Language Switcher */}
+            <div className='absolute top-8 left-1/2 -translate-x-1/2'>
+              <LanguageSwitcher />
+            </div>
+
+            <nav className='flex flex-col gap-0 w-full px-10 mt-12'>
+              {navRoutes.map((route, i) => {
+                const isActive = activeSection === route.href.replace('#', '');
+                return (
+                  <motion.div
+                    key={route.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 + 0.2 }}
+                  >
+                    <Link
+                      href={route.href}
+                      onClick={(e) => scrollToSection(e, route.href)}
+                      className={cn(
+                        'group relative flex items-center py-5 border-b border-border/40 transition-all duration-500',
+                        isActive ? 'text-primary' : 'text-foreground/80',
+                      )}
+                    >
+                      <span
+                        className={cn(
+                          'font-serif text-4xl tracking-tight transition-transform duration-500 group-hover:translate-x-2 mr-auto',
+                          isActive ? 'italic' : '',
+                        )}
+                      >
+                        {route.name}
+                      </span>
+                      <span className='font-serif text-[14px] opacity-30 tracking-widest pt-2 tabular-nums'>
+                        {(i + 1).toString().padStart(2, '0')}
+                      </span>
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Detached Language Switcher - Floating bottom right */}
       <motion.div

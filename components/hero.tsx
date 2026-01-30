@@ -4,14 +4,7 @@ import * as React from 'react';
 import type { ReactNode } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-  useSpring,
-  type Variants,
-} from 'motion/react';
+import { motion, useReducedMotion, type Variants } from 'motion/react';
 import { Button } from '@/components/ui/button';
 import { LanguageSwitcher } from './language-switcher';
 
@@ -28,21 +21,6 @@ export function Hero({ locked = false, cta }: HeroProps) {
   React.useEffect(() => {
     setMounted(true);
   }, []);
-
-  const targetRef = React.useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ['start start', 'end start'],
-  });
-
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
-  const y1 = useTransform(smoothProgress, [0, 1], [0, -40]);
-  const y2 = useTransform(smoothProgress, [0, 1], [0, 40]);
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -67,7 +45,6 @@ export function Hero({ locked = false, cta }: HeroProps) {
 
   return (
     <section
-      ref={targetRef}
       id='hero'
       className='relative flex min-h-[100dvh] flex-col items-center justify-start lg:justify-center overflow-hidden bg-background px-6 pt-24 pb-8 lg:pt-40 lg:pb-12'
     >
@@ -269,62 +246,64 @@ export function Hero({ locked = false, cta }: HeroProps) {
           </div>
 
           {/* Main Large Image (Left) */}
-          <motion.div
-            style={{ y: shouldReduceMotion ? 0 : y1 }}
-            animate={
-              shouldReduceMotion
-                ? {}
-                : {
-                    x: [0, 5, 0],
-                    rotate: [0, 0.5, 0],
-                  }
-            }
-            transition={{
-              duration: 12,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-            className='relative aspect-4/5 w-full overflow-hidden rounded-sm hover:z-20 transition-all shadow-md group'
-          >
-            <Image
-              src='/images/4.jpg'
-              alt={t('heroImageAlt')}
-              fill
-              priority
-              sizes='(max-width: 768px) 100vw, 25vw'
-              className='object-cover transition-transform duration-[2s] group-hover:scale-105'
-            />
-            {/* Gloss Overlay */}
-            <div className='absolute inset-0 bg-linear-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000' />
-          </motion.div>
-
-          {/* Secondary Stacked Images (Middle) */}
-          <div className='flex flex-col gap-3 lg:gap-5'>
+          <div className='relative aspect-4/5 w-full overflow-hidden rounded-sm hover:z-20 transition-all shadow-md group'>
             <motion.div
-              style={{ y: shouldReduceMotion ? 0 : y2 }}
+              className='absolute inset-0 h-full w-full'
               animate={
                 shouldReduceMotion
                   ? {}
                   : {
-                      x: [0, -4, 0],
-                      scale: [1, 1.01, 1],
+                      scale: [1.1, 1.15, 1.1],
+                      x: [-5, 5, -5],
+                      y: [-5, 5, -5],
                     }
               }
               transition={{
-                duration: 15,
+                duration: 25,
                 repeat: Infinity,
                 ease: 'easeInOut',
-                delay: 1,
               }}
-              className='relative aspect-3/2 w-full overflow-hidden rounded-sm shadow-sm group'
             >
               <Image
-                src='/images/7.jpg'
-                alt='Wedding celebration'
+                src='/images/4.jpg'
+                alt={t('heroImageAlt')}
                 fill
-                sizes='(max-width: 768px) 100vw, 20vw'
-                className='object-cover transition-transform duration-[2s] group-hover:scale-110'
+                priority
+                sizes='(max-width: 768px) 100vw, 25vw'
+                className='object-cover transition-transform duration-[2s] group-hover:scale-105'
               />
+            </motion.div>
+            {/* Gloss Overlay */}
+            <div className='absolute inset-0 bg-linear-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000' />
+          </div>
+
+          {/* Secondary Stacked Images (Middle) */}
+          <div className='flex flex-col gap-3 lg:gap-5'>
+            <div className='relative aspect-3/2 w-full overflow-hidden rounded-sm shadow-sm group'>
+              <motion.div
+                className='absolute inset-0 h-full w-full'
+                animate={
+                  shouldReduceMotion
+                    ? {}
+                    : {
+                        scale: [1.1, 1.2, 1.1],
+                        x: [5, -5, 5],
+                      }
+                }
+                transition={{
+                  duration: 20,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+              >
+                <Image
+                  src='/images/7.jpg'
+                  alt='Wedding celebration'
+                  fill
+                  sizes='(max-width: 768px) 100vw, 20vw'
+                  className='object-cover transition-transform duration-[2s] group-hover:scale-110'
+                />
+              </motion.div>
               <div className='absolute bottom-2 right-2 opacity-50 pointer-events-none'>
                 <svg width='30' height='30' viewBox='0 0 100 100' fill='none'>
                   <path
@@ -335,62 +314,64 @@ export function Hero({ locked = false, cta }: HeroProps) {
                   />
                 </svg>
               </div>
-            </motion.div>
+            </div>
+            <div className='relative aspect-3/2 w-full overflow-hidden rounded-sm grow shadow-sm group'>
+              <motion.div
+                className='absolute inset-0 h-full w-full'
+                animate={
+                  shouldReduceMotion
+                    ? {}
+                    : {
+                        scale: [1.1, 1.15, 1.1],
+                        y: [5, -5, 5],
+                      }
+                }
+                transition={{
+                  duration: 22,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+              >
+                <Image
+                  src='/images/3.jpg'
+                  alt='Wedding moments'
+                  fill
+                  sizes='(max-width: 768px) 100vw, 20vw'
+                  className='object-cover transition-transform duration-[2s] group-hover:scale-110'
+                />
+              </motion.div>
+              <div className='absolute inset-0 border-[0.5px] border-white/10 m-2 rounded-xs' />
+            </div>
+          </div>
+
+          {/* New Image (Right) */}
+          <div className='relative aspect-4/5 w-full hidden sm:block overflow-hidden rounded-sm hover:z-20 transition-all shadow-md group'>
             <motion.div
+              className='absolute inset-0 h-full w-full'
               animate={
                 shouldReduceMotion
                   ? {}
                   : {
-                      y: [0, 6, 0],
-                      rotate: [0, -0.5, 0],
+                      scale: [1.15, 1.1, 1.15],
+                      x: [5, -5, 5],
+                      y: [5, -5, 5],
                     }
               }
               transition={{
-                duration: 10,
+                duration: 28,
                 repeat: Infinity,
                 ease: 'easeInOut',
-                delay: 0.5,
               }}
-              className='relative aspect-3/2 w-full overflow-hidden rounded-sm grow shadow-sm group'
             >
               <Image
-                src='/images/3.jpg'
-                alt='Wedding moments'
+                src='/images/5.jpg'
+                alt='Wedding detail'
                 fill
-                sizes='(max-width: 768px) 100vw, 20vw'
-                className='object-cover transition-transform duration-[2s] group-hover:scale-110'
+                sizes='(max-width: 768px) 100vw, 25vw'
+                className='object-cover transition-transform duration-[2s] group-hover:scale-105'
               />
-              <div className='absolute inset-0 border-[0.5px] border-white/10 m-2 rounded-xs' />
             </motion.div>
           </div>
-
-          {/* New Image (Right) */}
-          <motion.div
-            style={{ y: shouldReduceMotion ? 0 : y1 }}
-            animate={
-              shouldReduceMotion
-                ? {}
-                : {
-                    x: [0, -6, 0],
-                    rotate: [0, -0.3, 0],
-                  }
-            }
-            transition={{
-              duration: 14,
-              repeat: Infinity,
-              ease: 'easeInOut',
-              delay: 2,
-            }}
-            className='relative aspect-4/5 w-full hidden sm:block overflow-hidden rounded-sm hover:z-20 transition-all shadow-md group'
-          >
-            <Image
-              src='/images/5.jpg'
-              alt='Wedding detail'
-              fill
-              sizes='(max-width: 768px) 100vw, 25vw'
-              className='object-cover transition-transform duration-[2s] group-hover:scale-105'
-            />
-          </motion.div>
 
           <div className='absolute -top-1/4 -right-12 hidden 2xl:block opacity-30 mix-blend-multiply pointer-events-none'>
             <motion.svg

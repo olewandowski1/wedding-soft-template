@@ -157,10 +157,10 @@ export function Hero({ cta }: HeroProps) {
               fill
               priority
               sizes='(max-width: 768px) 100vw, 25vw'
-              className='object-cover scale-110 transition-transform duration-[2s] group-hover:scale-115'
+              className='object-cover scale-110 transition-transform duration-[1.2s] group-hover:scale-115'
             />
             {/* Gloss Overlay */}
-            <div className='absolute inset-0 bg-linear-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000' />
+            <div className='absolute inset-0 bg-linear-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700' />
           </div>
 
           {/* Secondary Stacked Images (Middle) */}
@@ -171,7 +171,7 @@ export function Hero({ cta }: HeroProps) {
                 alt='Wedding celebration'
                 fill
                 sizes='(max-width: 768px) 100vw, 20vw'
-                className='object-cover scale-110 transition-transform duration-[2s] group-hover:scale-120'
+                className='object-cover scale-110 transition-transform duration-[1.2s] group-hover:scale-120'
               />
               <div className='absolute bottom-2 right-2 opacity-50 pointer-events-none'>
                 <svg width='30' height='30' viewBox='0 0 100 100' fill='none'>
@@ -190,7 +190,7 @@ export function Hero({ cta }: HeroProps) {
                 alt='Wedding moments'
                 fill
                 sizes='(max-width: 768px) 100vw, 20vw'
-                className='object-cover scale-110 transition-transform duration-[2s] group-hover:scale-120'
+                className='object-cover scale-110 transition-transform duration-[1.2s] group-hover:scale-120'
               />
               <div className='absolute inset-0 border-[0.5px] border-white/10 m-2 rounded-xs' />
             </div>
@@ -203,7 +203,7 @@ export function Hero({ cta }: HeroProps) {
               alt='Wedding detail'
               fill
               sizes='(max-width: 768px) 100vw, 25vw'
-              className='object-cover scale-110 transition-transform duration-[2s] group-hover:scale-115'
+              className='object-cover scale-110 transition-transform duration-[1.2s] group-hover:scale-115'
             />
           </div>
 

@@ -97,7 +97,7 @@ export function FAQ() {
           <Accordion
             type='single'
             collapsible
-            className='flex flex-col gap-4 md:gap-6 pl-10 md:pl-16'
+            className='flex flex-col gap-4 md:gap-6 pl-0 md:pl-16'
           >
             {faqs.map((faq) => (
               <AccordionItem
@@ -105,8 +105,8 @@ export function FAQ() {
                 value={faq.id}
                 className='border-none overflow-hidden group/item'
               >
-                <AccordionTrigger className='group/trigger flex items-center gap-4 py-8 text-left hover:no-underline focus-visible:ring-0 after:hidden'>
-                  <div className='flex flex-col items-start gap-3 w-full'>
+                <AccordionTrigger className='group/trigger flex items-center gap-4 py-8 text-center md:text-left hover:no-underline focus-visible:ring-0 after:hidden justify-center md:justify-start'>
+                  <div className='flex flex-col items-center md:items-start gap-3 w-full'>
                     <span className='font-serif text-xs tracking-[0.3em] text-primary/60 uppercase'>
                       {faq.number}
                     </span>
@@ -115,8 +115,8 @@ export function FAQ() {
                     </span>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className='pb-10 pr-6 md:pr-12 text-lg md:text-xl leading-relaxed text-foreground/85 font-light italic'>
-                  <div className='flex flex-col gap-8 max-w-2xl'>
+                <AccordionContent className='pb-10 px-6 md:pr-12 text-lg md:text-xl leading-relaxed text-foreground/85 font-light italic text-center md:text-left'>
+                  <div className='flex flex-col items-center md:items-start gap-8 max-w-2xl mx-auto md:mx-0'>
                     <p>{faq.a}</p>
                     <div className='flex items-center gap-3 opacity-30 group-hover/item:opacity-60 transition-opacity duration-700'>
                       <div className='h-px w-8 bg-primary' />

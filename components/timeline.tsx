@@ -131,14 +131,14 @@ function TimelineItem({
     >
       {/* Time Label (Desktop Left/Right Overlap) */}
       <div
-        className={`flex flex-col px-0 md:px-12 ${isEven ? 'md:items-end text-left md:text-right' : 'md:order-2 md:items-start text-left'}`}
+        className={`flex flex-col px-0 md:px-12 items-center ${isEven ? 'md:items-end text-center md:text-right' : 'md:order-2 md:items-start text-center md:text-left'}`}
       >
-        <div className='flex items-center gap-4 text-primary/80 mb-1 lg:mb-2 lg:direction-rtl'>
-          <span className='font-serif text-base tracking-widest uppercase'>
+        <div className='flex items-center gap-4 text-primary mb-1 lg:mb-2 lg:direction-rtl'>
+          <span className='font-serif text-lg tracking-[0.2em] uppercase font-medium'>
             {item.time}
           </span>
         </div>
-        <h3 className='font-serif text-3xl lg:text-4xl text-foreground font-light italic leading-tight'>
+        <h3 className='font-serif text-3xl lg:text-4xl text-foreground font-light italic leading-tight text-center md:text-inherit'>
           {item.title}
         </h3>
 
@@ -149,7 +149,7 @@ function TimelineItem({
       </div>
 
       {/* Center Marker */}
-      <div className='absolute left-0 md:left-1/2 md:-translate-x-1/2 top-0 md:top-1/2 md:-translate-y-1/2 md:w-3 md:h-3 rounded-full border border-primary/30 z-20 flex items-center justify-center shrink-0'>
+      <div className='absolute left-1/2 -translate-x-1/2 top-0 md:top-1/2 md:-translate-y-1/2 md:w-3 md:h-3 rounded-full border border-primary/30 z-20 hidden md:flex items-center justify-center shrink-0'>
         <div className='w-1 h-1 rounded-full bg-primary/40' />
       </div>
 
@@ -161,7 +161,7 @@ function TimelineItem({
             {item.id.slice(0, 1)}
           </div>
 
-          <p className='text-lg leading-relaxed text-foreground/85 font-light font-serif italic relative z-10'>
+          <p className='text-lg leading-relaxed text-foreground/85 font-light font-serif italic relative z-10 text-center md:text-left'>
             {item.description}
           </p>
 

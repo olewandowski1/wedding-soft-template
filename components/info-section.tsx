@@ -3,11 +3,9 @@
 import { Gift, Info, Shirt } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
-import * as React from 'react';
 
 export function InfoSection() {
   const t = useTranslations('InfoSection');
-  const tHero = useTranslations('Hero');
 
   const infoItems = [
     {
@@ -82,7 +80,7 @@ export function InfoSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-5%' }}
               transition={{ duration: 0.8 }}
-              className={`relative flex flex-col items-start group ${
+              className={`relative flex flex-col items-center md:items-start group text-center md:text-left ${
                 index === 1 ? 'lg:pt-20' : index === 2 ? 'lg:pt-10' : ''
               }`}
             >
@@ -101,7 +99,7 @@ export function InfoSection() {
               </div>
 
               <div className='flex flex-col gap-6 relative z-10 w-full'>
-                <div className='flex items-center gap-6'>
+                <div className='flex items-center justify-center md:justify-start gap-6'>
                   <div className='w-14 h-14 flex items-center justify-center rounded-2xl bg-primary/[0.03] border border-primary/5 -rotate-3 group-hover:rotate-0 transition-transform duration-500 shrink-0'>
                     <item.icon
                       size={24}
@@ -114,12 +112,12 @@ export function InfoSection() {
                   </h3>
                 </div>
 
-                <div className='pl-20'>
+                <div className='md:pl-20'>
                   <p className='text-lg leading-relaxed text-foreground/85 font-light italic'>
                     {item.description}
                   </p>
 
-                  <div className='mt-8 flex items-center gap-2 opacity-30 group-hover:opacity-60 transition-opacity duration-700'>
+                  <div className='mt-8 flex items-center justify-center md:justify-start gap-2 opacity-30 group-hover:opacity-60 transition-opacity duration-700'>
                     <div className='h-px w-6 bg-primary' />
                     <span className='font-serif text-[8px] uppercase tracking-[0.2em]'>
                       {item.title}

@@ -169,10 +169,10 @@ export function Details() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: 0.2 }}
-                className='flex flex-col gap-6 lg:gap-8'
+                className='flex flex-col items-center lg:items-start text-center lg:text-left gap-6 lg:gap-8'
               >
                 <div className='flex flex-col gap-4'>
-                  <div className='flex items-center gap-2 text-primary/80'>
+                  <div className='flex items-center justify-center lg:justify-start gap-2 text-primary/80'>
                     <Clock size={16} strokeWidth={1.5} />
                     <span className='font-serif text-md tracking-widest uppercase'>
                       {event.time}
@@ -183,19 +183,19 @@ export function Details() {
                   </h3>
                 </div>
 
-                <div className='flex flex-col gap-6'>
-                  <div className='flex flex-col gap-4 p-8 bg-primary/[0.02] border border-primary/5 rounded-2xl relative overflow-hidden group hover:bg-primary/[0.03] transition-colors'>
+                <div className='flex flex-col items-center lg:items-start gap-6'>
+                  <div className='flex flex-col gap-4 p-8 bg-primary/[0.02] border border-primary/5 rounded-2xl relative overflow-hidden group hover:bg-primary/[0.03] transition-colors w-full'>
                     {/* Decorative background mark */}
                     <div className='absolute -right-4 -bottom-4 font-serif text-9xl text-primary/[0.03] select-none pointer-events-none uppercase'>
                       {event.id.slice(0, 1)}
                     </div>
 
-                    <div className='flex items-start gap-4 relative z-10'>
+                    <div className='flex items-start justify-center lg:justify-start gap-4 relative z-10'>
                       <MapPin
                         className='text-primary/60 mt-1 shrink-0'
                         size={20}
                       />
-                      <div className='flex flex-col gap-1'>
+                      <div className='flex flex-col gap-1 text-left'>
                         <span className='font-serif text-lg text-foreground font-medium'>
                           {event.location}
                         </span>
@@ -209,7 +209,7 @@ export function Details() {
                       &ldquo;{event.description}&rdquo;
                     </p>
 
-                    <div className='pt-4 relative z-10'>
+                    <div className='pt-4 relative z-10 flex justify-center lg:justify-start'>
                       <a
                         href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.address)}`}
                         target='_blank'

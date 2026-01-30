@@ -162,8 +162,8 @@ export function Navigation() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
-          'fixed top-0 z-50 w-full px-6 transition-[padding] duration-500 pointer-events-none',
-          scrolled ? 'py-8' : 'py-10',
+          'fixed top-0 z-50 w-full px-2 transition-[padding] duration-500 pointer-events-none',
+          scrolled ? 'py-5 lg:py-9' : 'py-6 lg:py-10',
         )}
       >
         <div className='relative mx-auto flex max-w-7xl items-center justify-center'>
@@ -223,7 +223,7 @@ export function Navigation() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.05 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className='fixed inset-0 z-[100] flex flex-col bg-background lg:hidden'
+            className='fixed inset-0 z-[100] flex flex-col bg-background lg:hidden overflow-y-auto'
           >
             <div className='flex items-center justify-between px-10 pt-8'>
               <div className='text-xs uppercase font-serif tracking-[0.6em] text-primary/70'>
@@ -232,10 +232,6 @@ export function Navigation() {
               <button onClick={() => setIsOpen(false)}>
                 <XIcon className='h-6 w-6 text-foreground' />
               </button>
-            </div>
-
-            <div className='absolute top-8 left-1/2 -translate-x-1/2'>
-              <LanguageSwitcher />
             </div>
 
             <nav className='mt-16 px-10'>
@@ -268,6 +264,10 @@ export function Navigation() {
                 );
               })}
             </nav>
+
+            <div className='mt-auto py-6 flex justify-center'>
+              <LanguageSwitcher />
+            </div>
 
             <div className='pointer-events-none absolute -bottom-10 -right-10 rotate-12 opacity-[0.03]'>
               <span className='font-script text-[15rem] text-primary'>

@@ -71,7 +71,7 @@ export function RSVP() {
       </div>
 
       {/* Elegant Header */}
-      <div className='flex flex-col items-center text-center mb-10 lg:mb-20'>
+      <div className='flex flex-col items-center text-center p-1 mb-10 lg:mb-20'>
         <div className='flex flex-col items-center text-center mb-8 lg:mb-12'>
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
@@ -103,7 +103,7 @@ export function RSVP() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className='max-w-2xl mx-auto rounded-[2.5rem] border border-primary/20 bg-white/60 dark:bg-primary/[0.05] backdrop-blur-md p-8 md:p-10 lg:p-14 relative overflow-hidden group shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)]'
+          className='max-w-2xl mx-auto rounded-[2.5rem] border border-primary/20 bg-white/60 dark:bg-primary/[0.05] backdrop-blur-md px-6 py-12 sm:p-10 lg:p-14 relative overflow-hidden group shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)]'
         >
           {/* Decorative Floral Elements */}
           <div className='absolute top-0 left-0 w-28 h-28 opacity-20 pointer-events-none'>
@@ -249,10 +249,10 @@ export function RSVP() {
                         data-invalid={fieldState.invalid}
                         className='flex flex-col gap-4'
                       >
-                        <FieldLabel className='font-serif text-[11px] uppercase tracking-[0.6em] text-primary/80 text-center'>
+                        <FieldLabel className='font-serif text-[11px] uppercase tracking-[0.6em] text-primary/80'>
                           {t('form.attendanceLabel')}
                         </FieldLabel>
-                        <div className='flex flex-wrap justify-center gap-x-12 gap-y-3'>
+                        <div className='flex flex-wrap justify-start md:justify-center gap-x-12 gap-y-3'>
                           <label className='flex items-center gap-3 cursor-pointer group transition-transform active:scale-95'>
                             <Checkbox
                               checked={field.value === 'yes'}
@@ -281,7 +281,7 @@ export function RSVP() {
                         {fieldState.invalid && (
                           <FieldError
                             errors={[fieldState.error]}
-                            className='text-[10px] uppercase tracking-widest text-center font-serif italic'
+                            className='text-[10px] uppercase tracking-widest font-serif italic'
                           />
                         )}
                       </Field>
@@ -352,7 +352,7 @@ export function RSVP() {
                   <Button
                     type='submit'
                     size='lg'
-                    className='relative rounded-full px-16 h-14 bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-500 font-serif text-xl italic tracking-[0.2em] shadow-2xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98]'
+                    className='relative rounded-full sm:px-16 w-full sm:w-auto h-14 bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-500 font-serif text-xl italic tracking-[0.2em] shadow-2xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98]'
                   >
                     {t('form.submitButton')}
                   </Button>

@@ -136,11 +136,11 @@ export function Story() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
-              className='flex flex-col gap-8'
+              className='flex flex-col items-center lg:items-start text-center lg:text-left gap-8'
             >
               <div className='relative'>
                 {/* Decorative Opening Quote Ornament */}
-                <span className='absolute -left-12 -top-12 font-serif text-[12rem] text-primary/5 select-none pointer-events-none'>
+                <span className='absolute -left-4 -top-12 md:-left-12 font-serif text-[8rem] md:text-[12rem] text-primary/5 select-none pointer-events-none'>
                   &ldquo;
                 </span>
                 <p className='font-serif text-3xl sm:text-4xl lg:text-5xl italic text-foreground leading-[1.1] tracking-tight relative z-10'>
@@ -148,7 +148,7 @@ export function Story() {
                 </p>
               </div>
 
-              <div className='flex flex-col gap-6 text-lg leading-relaxed text-foreground/85 font-light max-w-md'>
+              <div className='flex flex-col items-center lg:items-start gap-6 text-lg leading-relaxed text-foreground/85 font-light max-w-md'>
                 <p>{t('historyParagraph1')}</p>
                 <div className='flex items-center gap-3'>
                   <div className='h-px w-6 bg-primary/30' />
@@ -164,7 +164,7 @@ export function Story() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 1 }}
-              className='relative mt-4 p-8 sm:p-10 bg-primary/[0.02] border border-primary/5 rounded-2xl overflow-hidden'
+              className='relative mt-4 p-8 sm:p-10 bg-primary/[0.02] border border-primary/5 rounded-2xl overflow-hidden text-center lg:text-left'
             >
               {/* Corner Ornament */}
               <div className='absolute top-0 right-0 w-24 h-24 text-primary/5 pointer-events-none rotate-45 translate-x-12 -translate-y-12'>

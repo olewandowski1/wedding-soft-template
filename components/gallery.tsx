@@ -129,7 +129,7 @@ export function Gallery() {
 
             <motion.div
               style={{ y: y2, rotate: -4 }}
-              className='absolute -translate-x-4 -translate-y-8 w-60 h-72 sm:w-64 sm:h-80 bg-white p-3 pb-12 shadow-2xl z-30 border border-black/5 will-change-transform'
+              className='absolute -translate-x-4 -translate-y-8 w-52 h-64 sm:w-64 sm:h-80 bg-white p-3 pb-12 shadow-2xl z-30 border border-black/5 will-change-transform'
             >
               <div className='relative w-full h-full overflow-hidden bg-muted'>
                 <Image

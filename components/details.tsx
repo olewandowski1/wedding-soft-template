@@ -50,7 +50,7 @@ export function Details() {
       location: t('ceremony.location'),
       address: t('ceremony.address'),
       description: t('ceremony.description'),
-      image: '/images/5.jpg',
+      image: '/images/8.jpg',
       label: '01',
     },
     {
@@ -60,7 +60,7 @@ export function Details() {
       location: t('reception.location'),
       address: t('reception.address'),
       description: t('reception.description'),
-      image: '/images/7.jpg',
+      image: '/images/3.jpg',
       label: '02',
     },
   ];
@@ -155,7 +155,7 @@ export function Details() {
                   className={`absolute -bottom-12 ${index % 2 === 0 ? '-right-12' : '-left-12'} hidden sm:block w-40 h-40 border border-white/40 shadow-xl overflow-hidden rounded-sm z-20`}
                 >
                   <Image
-                    src={index % 2 === 0 ? '/images/6.jpg' : '/images/8.jpg'}
+                    src={index % 2 === 0 ? '/images/9.jpg' : '/images/11.jpg'}
                     alt='Accent'
                     fill
                     className='object-cover grayscale-[0.3]'

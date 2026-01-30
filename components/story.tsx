@@ -101,7 +101,7 @@ export function Story() {
                 className='absolute -top-12 -left-12 w-full h-full overflow-hidden rounded-sm border border-white/40 shadow-2xl z-0 -rotate-3'
               >
                 <Image
-                  src='/images/3.jpg'
+                  src='/images/5.jpg'
                   alt={t('imageAlt2')}
                   fill
                   className='object-cover grayscale-[0.3]'
@@ -119,7 +119,7 @@ export function Story() {
                 className='relative w-full h-full overflow-hidden rounded-sm border border-white/60 shadow-2xl z-10 group rotate-2'
               >
                 <Image
-                  src='/images/2.jpg'
+                  src='/images/6.jpg'
                   alt={t('imageAlt1')}
                   fill
                   className='object-cover'

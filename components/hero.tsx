@@ -7,18 +7,12 @@ import Image from 'next/image';
 import * as React from 'react';
 
 type HeroProps = {
-  locked?: boolean;
   cta?: React.ReactNode;
 };
 
-export function Hero({ locked = false, cta }: HeroProps) {
+export function Hero({ cta }: HeroProps) {
   const t = useTranslations('Hero');
-  const [mounted, setMounted] = React.useState(false);
   const shouldReduceMotion = useReducedMotion();
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -167,7 +161,7 @@ export function Hero({ locked = false, cta }: HeroProps) {
           {/* Main Large Image (Left) */}
           <div className='relative aspect-4/5 w-full overflow-hidden rounded-sm shadow-md group'>
             <Image
-              src='/images/4.jpg'
+              src='/images/7.jpg'
               alt={t('heroImageAlt')}
               fill
               priority
@@ -182,7 +176,7 @@ export function Hero({ locked = false, cta }: HeroProps) {
           <div className='flex flex-col gap-3 lg:gap-5'>
             <div className='relative aspect-3/2 w-full overflow-hidden rounded-sm shadow-sm group'>
               <Image
-                src='/images/7.jpg'
+                src='/images/1.jpg'
                 alt='Wedding celebration'
                 fill
                 sizes='(max-width: 768px) 100vw, 20vw'
@@ -201,7 +195,7 @@ export function Hero({ locked = false, cta }: HeroProps) {
             </div>
             <div className='relative aspect-3/2 w-full overflow-hidden rounded-sm grow shadow-sm group'>
               <Image
-                src='/images/3.jpg'
+                src='/images/12.jpg'
                 alt='Wedding moments'
                 fill
                 sizes='(max-width: 768px) 100vw, 20vw'
@@ -214,7 +208,7 @@ export function Hero({ locked = false, cta }: HeroProps) {
           {/* New Image (Right) */}
           <div className='relative aspect-4/5 w-full hidden sm:block overflow-hidden rounded-sm shadow-md group'>
             <Image
-              src='/images/5.jpg'
+              src='/images/10.jpg'
               alt='Wedding detail'
               fill
               sizes='(max-width: 768px) 100vw, 25vw'

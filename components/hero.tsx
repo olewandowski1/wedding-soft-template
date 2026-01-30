@@ -39,15 +39,6 @@ export function Hero({ cta }: HeroProps) {
       id='hero'
       className='relative flex min-h-[100dvh] flex-col items-center justify-start lg:justify-center overflow-hidden bg-background px-6 pt-24 pb-8 lg:pt-40 lg:pb-12'
     >
-      {/* Noise Texture Overlay */}
-      <div
-        className='absolute inset-0 z-1 opacity-[0.03] pointer-events-none'
-        style={{
-          backgroundImage:
-            'url("https://grainy-gradients.vercel.app/noise.svg")',
-        }}
-      />
-
       {/* Static Background Elements - No infinite animations */}
       <div className='absolute inset-0 pointer-events-none z-0'>
         <div className='absolute -top-[10%] -left-[10%] w-[50%] aspect-square bg-primary/5 blur-[120px] rounded-full opacity-[0.08]' />

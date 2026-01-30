@@ -9,15 +9,6 @@ export function Footer() {
 
   return (
     <footer className='relative border-t border-primary/5 bg-background py-16 lg:py-24 overflow-hidden'>
-      {/* Noise Texture Overlay */}
-      <div
-        className='absolute inset-0 z-0 opacity-[0.02] pointer-events-none'
-        style={{
-          backgroundImage:
-            'url("https://grainy-gradients.vercel.app/noise.svg")',
-        }}
-      />
-
       <div className='relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-8 px-6 text-center'>
         {/* Names & Signature */}
         <div className='flex flex-col items-center gap-4'>

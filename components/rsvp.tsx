@@ -58,18 +58,6 @@ export function RSVP() {
       id='rsvp'
       className='relative scroll-mt-24 py-20 sm:py-24 lg:py-32 overflow-hidden bg-background'
     >
-      {/* Static Background */}
-      <div className='absolute inset-0 pointer-events-none z-0'>
-        <div
-          className='absolute inset-0 opacity-[0.02]'
-          style={{
-            backgroundImage:
-              'url("https://grainy-gradients.vercel.app/noise.svg")',
-          }}
-        />
-        <div className='absolute top-[-10%] right-[-10%] w-[50%] aspect-square bg-primary/10 blur-[130px] rounded-full' />
-      </div>
-
       {/* Elegant Header */}
       <div className='flex flex-col items-center text-center p-1 mb-10 lg:mb-20'>
         <div className='flex flex-col items-center text-center mb-8 lg:mb-12'>

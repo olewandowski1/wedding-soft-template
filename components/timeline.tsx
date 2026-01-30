@@ -52,18 +52,6 @@ export function Timeline() {
       id='timeline'
       className='relative scroll-mt-24 py-20 sm:py-24 lg:py-32 overflow-hidden bg-background'
     >
-      {/* Static Background */}
-      <div className='absolute inset-0 pointer-events-none z-0'>
-        <div
-          className='absolute inset-0 opacity-[0.02]'
-          style={{
-            backgroundImage:
-              'url("https://grainy-gradients.vercel.app/noise.svg")',
-          }}
-        />
-        <div className='absolute top-[20%] right-[-5%] w-[40%] aspect-square bg-primary/5 blur-[120px] rounded-full' />
-      </div>
-
       <div className='relative z-10 mx-auto w-full max-w-5xl px-6'>
         {/* Elegant Header */}
         <div className='flex flex-col items-center text-center mb-10 lg:mb-20'>

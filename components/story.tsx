@@ -20,18 +20,6 @@ export function Story() {
       id='story'
       className='relative scroll-mt-24 py-24 sm:py-32 lg:py-48 overflow-hidden bg-background'
     >
-      {/* Static Background - No scroll transforms */}
-      <div className='absolute inset-0 pointer-events-none z-0'>
-        <div
-          className='absolute inset-0 opacity-[0.03]'
-          style={{
-            backgroundImage:
-              'url("https://grainy-gradients.vercel.app/noise.svg")',
-          }}
-        />
-        <div className='absolute top-0 right-[-10%] w-[50%] aspect-square bg-primary/20 blur-[120px] rounded-full opacity-[0.04]' />
-      </div>
-
       <div className='relative z-10 mx-auto w-full max-w-6xl px-6'>
         {/* Header with Decorative Reveal */}
         <div className='flex flex-col items-center text-center mb-10 lg:mb-20'>

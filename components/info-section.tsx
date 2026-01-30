@@ -36,18 +36,6 @@ export function InfoSection() {
       id='info'
       className='relative scroll-mt-24 py-20 sm:py-24 lg:py-32 overflow-hidden bg-background'
     >
-      {/* Static Background */}
-      <div className='absolute inset-0 pointer-events-none z-0'>
-        <div
-          className='absolute inset-0 opacity-[0.02]'
-          style={{
-            backgroundImage:
-              'url("https://grainy-gradients.vercel.app/noise.svg")',
-          }}
-        />
-        <div className='absolute top-[-5%] left-[-5%] w-[45%] aspect-square bg-primary/10 blur-[130px] rounded-full' />
-      </div>
-
       <div className='relative z-10 mx-auto w-full max-w-6xl px-6'>
         {/* Elegant Header */}
         <div className='flex flex-col items-center text-center mb-10 lg:mb-20'>

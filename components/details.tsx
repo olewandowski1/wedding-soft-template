@@ -16,14 +16,31 @@ export function Details() {
   const tHero = useTranslations('Hero');
   const shouldReduceMotion = useReducedMotion();
   const containerRef = React.useRef(null);
+  const [isMobile, setIsMobile] = React.useState(true);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start end', 'end start'],
   });
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, 50]);
+  const disableParallax = shouldReduceMotion || isMobile;
+  const y1 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    disableParallax ? [0, 0] : [0, -50],
+  );
+  const y2 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    disableParallax ? [0, 0] : [0, 50],
+  );
 
   const events = [
     {

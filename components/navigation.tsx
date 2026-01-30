@@ -263,7 +263,7 @@ export function Navigation() {
                     key={route.href}
                     initial={{ opacity: 0, x: -16 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 + 0.15 }}
+                    transition={{ duration: 0.2 }}
                   >
                     <Link
                       href={route.href}

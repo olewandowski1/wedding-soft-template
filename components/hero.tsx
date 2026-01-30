@@ -116,13 +116,9 @@ export function Hero({ locked = false, cta }: HeroProps) {
             <div className='h-1 w-1 rounded-full bg-primary/20' />
             <div className='h-px w-8 bg-primary/20' />
           </div>
-          <motion.span
-            animate={{ opacity: [0.6, 0.9, 0.6] }}
-            transition={{ duration: 4, repeat: Infinity }}
-            className='font-script text-2xl text-primary/70 -mt-2'
-          >
+          <span className='font-script text-2xl text-primary/70 -mt-2'>
             {t('story')}
-          </motion.span>
+          </span>
         </motion.div>
 
         {/* CTA Button Section - Contained and Premium */}
@@ -286,14 +282,8 @@ export function Hero({ locked = false, cta }: HeroProps) {
         </motion.div>
       </motion.div>
 
-      {/* Decorative scroll indicator line (Optional, very subtle) */}
-      <div className='absolute bottom-8 left-1/2 -translate-x-1/2 overflow-hidden h-12 w-px'>
-        <motion.div
-          animate={{ y: [0, 48, 48], opacity: [0, 1, 0] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-          className='w-full h-1/2 bg-linear-to-b from-primary/40 to-transparent'
-        />
-      </div>
+      {/* Static scroll indicator */}
+      <div className='absolute bottom-8 left-1/2 -translate-x-1/2 h-12 w-px bg-linear-to-b from-primary/40 to-transparent' />
     </section>
   );
 }

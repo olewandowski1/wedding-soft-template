@@ -61,8 +61,9 @@ export function AccessGate({ unlockAction }: AccessGateProps) {
       </AlertDialogTrigger>
       <AlertDialogContent className='max-w-md border-none bg-transparent p-0 shadow-none'>
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2 }}
           className='relative overflow-hidden rounded-[2rem] bg-background/80 backdrop-blur-xl border border-primary/10 p-8 shadow-2xl'
         >
           {/* Decorative Background Accent */}

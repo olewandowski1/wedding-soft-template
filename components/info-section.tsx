@@ -81,7 +81,7 @@ export function InfoSection() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-5%' }}
-              transition={{ duration: 1, delay: index * 0.2 }}
+              transition={{ duration: 0.8 }}
               className={`relative flex flex-col items-start group ${
                 index === 1 ? 'lg:pt-20' : index === 2 ? 'lg:pt-10' : ''
               }`}

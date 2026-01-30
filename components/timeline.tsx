@@ -126,7 +126,7 @@ function TimelineItem({
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-10%' }}
-      transition={{ duration: 1, delay: index * 0.1 }}
+      transition={{ duration: 0.8 }}
       className={`relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0 items-center`}
     >
       {/* Time Label (Desktop Left/Right Overlap) */}

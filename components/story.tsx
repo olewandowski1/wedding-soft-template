@@ -77,15 +77,11 @@ export function Story() {
             <div className='relative w-full max-w-md aspect-[4/5] sm:max-w-lg group/stack'>
               {/* Extra Back Image - static rotation */}
               <motion.div
-                initial={{ opacity: 0, x: 40, y: 30, rotate: 12 }}
-                whileInView={{ opacity: 1, x: 0, y: 0, rotate: 6 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: '-10%' }}
-                transition={{
-                  duration: 2,
-                  delay: 0.4,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className='absolute -bottom-10 -right-6 w-[70%] h-[70%] overflow-hidden rounded-sm border border-white/30 shadow-xl z-5 transition-transform duration-1000 group-hover/stack:translate-x-2 group-hover/stack:translate-y-2'
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className='absolute -bottom-10 -right-6 w-[70%] h-[70%] overflow-hidden rounded-sm border border-white/30 shadow-xl z-5 rotate-6'
               >
                 <Image
                   src='/images/4.jpg'
@@ -98,15 +94,11 @@ export function Story() {
 
               {/* Middle Image - static rotation */}
               <motion.div
-                initial={{ opacity: 0, x: -60, y: 40, rotate: -10 }}
-                whileInView={{ opacity: 1, x: 0, y: 0, rotate: -3 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: '-10%' }}
-                transition={{
-                  duration: 1.8,
-                  delay: 0.2,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className='absolute -top-12 -left-12 w-full h-full overflow-hidden rounded-sm border border-white/40 shadow-2xl z-0 transition-transform duration-700 group-hover/stack:-translate-x-4 group-hover/stack:-translate-y-4'
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className='absolute -top-12 -left-12 w-full h-full overflow-hidden rounded-sm border border-white/40 shadow-2xl z-0 -rotate-3'
               >
                 <Image
                   src='/images/3.jpg'
@@ -120,24 +112,19 @@ export function Story() {
 
               {/* Main Front Image - static */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.8, rotate: 5, y: 40 }}
-                whileInView={{ opacity: 1, scale: 1, rotate: 2, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: '-10%' }}
-                transition={{
-                  duration: 1.6,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className='relative w-full h-full overflow-hidden rounded-sm border border-white/60 shadow-2xl z-10 group'
+                transition={{ duration: 0.8 }}
+                className='relative w-full h-full overflow-hidden rounded-sm border border-white/60 shadow-2xl z-10 group rotate-2'
               >
                 <Image
                   src='/images/2.jpg'
                   alt={t('imageAlt1')}
                   fill
-                  className='object-cover transition-transform duration-1000 group-hover:scale-105'
+                  className='object-cover'
                   sizes='(max-width: 1024px) 100vw, 40vw'
                 />
-                {/* Gloss effect */}
-                <div className='absolute inset-0 bg-linear-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000' />
               </motion.div>
             </div>
           </div>

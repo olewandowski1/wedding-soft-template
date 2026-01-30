@@ -14,15 +14,37 @@ export function Gallery() {
   const t = useTranslations('Gallery');
   const tHero = useTranslations('Hero');
   const containerRef = React.useRef(null);
+  const shouldReduceMotion = useReducedMotion();
+  const [isMobile, setIsMobile] = React.useState(true);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start end', 'end start'],
   });
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -60]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, 40]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, -20]);
+  const disableParallax = shouldReduceMotion || isMobile;
+  const y1 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    disableParallax ? [0, 0] : [0, -60],
+  );
+  const y2 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    disableParallax ? [0, 0] : [0, 40],
+  );
+  const y3 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    disableParallax ? [0, 0] : [0, -20],
+  );
 
   return (
     <section

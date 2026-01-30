@@ -183,12 +183,7 @@ export function RSVP() {
               className='space-y-8 relative z-10'
             >
               <FieldGroup className='grid gap-x-10 gap-y-8 md:grid-cols-2'>
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 }}
-                >
+                <div>
                   <Controller
                     control={form.control}
                     name='fullName'
@@ -214,14 +209,9 @@ export function RSVP() {
                       </Field>
                     )}
                   />
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                >
+                <div>
                   <Controller
                     control={form.control}
                     name='email'
@@ -248,15 +238,9 @@ export function RSVP() {
                       </Field>
                     )}
                   />
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                  className='md:col-span-2'
-                >
+                <div className='md:col-span-2'>
                   <Controller
                     control={form.control}
                     name='attendance'
@@ -303,15 +287,9 @@ export function RSVP() {
                       </Field>
                     )}
                   />
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 }}
-                  className='md:col-span-2'
-                >
+                <div className='md:col-span-2'>
                   <Controller
                     control={form.control}
                     name='plusOne'
@@ -337,15 +315,9 @@ export function RSVP() {
                       </Field>
                     )}
                   />
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5 }}
-                  className='md:col-span-2'
-                >
+                <div className='md:col-span-2'>
                   <Controller
                     control={form.control}
                     name='message'
@@ -371,16 +343,10 @@ export function RSVP() {
                       </Field>
                     )}
                   />
-                </motion.div>
+                </div>
               </FieldGroup>
 
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.6 }}
-                className='flex flex-col items-center gap-6 pt-4'
-              >
+              <div className='flex flex-col items-center gap-6 pt-4'>
                 <div className='relative group'>
                   <div className='absolute -inset-1 bg-primary/20 rounded-full blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200' />
                   <Button
@@ -394,7 +360,7 @@ export function RSVP() {
                 <p className='text-[10px] uppercase tracking-[0.3em] text-foreground/40 font-serif font-medium'>
                   {t('form.privacyNote')}
                 </p>
-              </motion.div>
+              </div>
             </form>
           )}
         </motion.div>

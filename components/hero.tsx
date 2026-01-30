@@ -93,7 +93,7 @@ export function Hero({ locked = false, cta }: HeroProps) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 1 }}
-            className='absolute -top-8 left-1/2 -translate-x-1/2 font-serif text-[9px] uppercase tracking-[0.8em] text-primary/70 hidden sm:flex items-center gap-4 whitespace-nowrap'
+            className='absolute -top-8 left-1/2 -translate-x-1/2 font-serif text-[11px] uppercase tracking-[0.8em] text-primary/70 hidden sm:flex items-center gap-4 whitespace-nowrap'
           >
             <span className='h-px w-10 bg-linear-to-r from-transparent to-primary/20' />
             {t('chapter')}

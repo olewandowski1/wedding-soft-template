@@ -70,29 +70,29 @@ export function RSVP() {
         <div className='absolute top-[-10%] right-[-10%] w-[50%] aspect-square bg-primary/10 blur-[130px] rounded-full' />
       </div>
 
-      <div className='relative z-10 mx-auto w-full max-w-4xl px-6'>
-        {/* Elegant Header */}
-        <div className='flex flex-col items-center text-center mb-10 lg:mb-20'>
+      {/* Elegant Header */}
+      <div className='flex flex-col items-center text-center mb-10 lg:mb-20'>
+        <div className='flex flex-col items-center text-center mb-8 lg:mb-12'>
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className='relative'
           >
-            <span className='font-serif text-[10px] uppercase tracking-[0.8em] text-primary/60 block'>
+            <span className='font-serif text-[13px] uppercase tracking-[1em] text-primary/70 block mb-2'>
               {t('headerSubtitle')}
             </span>
-            <h2 className='font-serif text-5xl sm:text-7xl lg:text-8xl text-foreground font-extralight tracking-tighter italic'>
+            <h2 className='font-serif text-5xl sm:text-7xl lg:text-8xl text-foreground font-extralight tracking-tighter italic leading-[0.9] pb-2'>
               {t('headerTitle')}
             </h2>
 
-            <div className='flex items-center justify-center mt-4 gap-3 relative'>
-              <div className='h-px w-8 bg-primary/20' />
-              <div className='h-1 w-1 rounded-full bg-primary/20' />
-              <div className='h-px w-8 bg-primary/20' />
+            <div className='flex items-center justify-center mt-4 gap-4 relative'>
+              <div className='h-px w-12 bg-linear-to-r from-transparent via-primary/30 to-transparent' />
+              <div className='h-1.5 w-1.5 rounded-full border border-primary/30' />
+              <div className='h-px w-12 bg-linear-to-r from-transparent via-primary/30 to-transparent' />
             </div>
 
-            <p className='mt-8 text-xl leading-relaxed text-foreground/70 font-serif italic font-light max-w-md'>
+            <p className='mt-6 text-xl leading-relaxed text-foreground/80 font-serif italic font-light max-w-md mx-auto'>
               {t('deadline')}
             </p>
           </motion.div>
@@ -102,38 +102,68 @@ export function RSVP() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className='max-w-2xl mx-auto rounded-[2.5rem] border border-primary/10 bg-primary/[0.03] backdrop-blur-sm p-8 md:p-12 lg:p-16 relative overflow-hidden group shadow-2xl shadow-primary/5'
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className='max-w-2xl mx-auto rounded-[2.5rem] border border-primary/20 bg-white/60 dark:bg-primary/[0.05] backdrop-blur-md p-8 md:p-10 lg:p-14 relative overflow-hidden group shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)]'
         >
+          {/* Decorative Floral Elements */}
+          <div className='absolute top-0 left-0 w-28 h-28 opacity-20 pointer-events-none'>
+            <svg
+              viewBox='0 0 100 100'
+              className='w-full h-full text-primary fill-none stroke-current'
+              strokeWidth='0.5'
+            >
+              <path d='M10,10 Q30,10 40,40 T70,50' />
+              <circle cx='70' cy='50' r='2' fill='currentColor' />
+              <path d='M10,10 Q10,30 40,40 T50,70' />
+              <circle cx='50' cy='70' r='2' fill='currentColor' />
+            </svg>
+          </div>
+          <div className='absolute bottom-0 right-0 w-28 h-28 opacity-20 pointer-events-none rotate-180'>
+            <svg
+              viewBox='0 0 100 100'
+              className='w-full h-full text-primary fill-none stroke-current'
+              strokeWidth='0.5'
+            >
+              <path d='M10,10 Q30,10 40,40 T70,50' />
+              <circle cx='70' cy='50' r='2' fill='currentColor' />
+              <path d='M10,10 Q10,30 40,40 T50,70' />
+              <circle cx='50' cy='70' r='2' fill='currentColor' />
+            </svg>
+          </div>
+
           {/* Subtle Inner Glow */}
-          <div className='absolute inset-0 bg-linear-to-br from-primary/[0.03] to-transparent pointer-events-none' />
+          <div className='absolute inset-0 bg-radial-to-br from-primary/[0.08] via-transparent to-transparent pointer-events-none' />
 
           {isSubmitted ? (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className='flex flex-col items-center gap-8 text-center relative z-10'
+              transition={{ duration: 0.8 }}
+              className='flex flex-col items-center gap-6 text-center relative z-10'
             >
-              <div className='w-20 h-20 flex items-center justify-center rounded-full bg-primary/10 text-primary'>
+              <div className='w-20 h-20 flex items-center justify-center rounded-full bg-primary/10 text-primary border border-primary/20 mb-1'>
                 <svg
                   viewBox='0 0 24 24'
                   fill='none'
                   stroke='currentColor'
-                  strokeWidth='1.5'
+                  strokeWidth='1'
                   className='w-10 h-10'
                 >
-                  <path
+                  <motion.path
                     d='M20 6L9 17L4 12'
                     strokeLinecap='round'
                     strokeLinejoin='round'
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 1, delay: 0.5 }}
                   />
                 </svg>
               </div>
               <div className='flex flex-col gap-4'>
-                <h3 className='font-serif text-4xl text-foreground font-light italic leading-tight'>
+                <h3 className='font-serif text-4xl sm:text-5xl text-foreground font-light italic leading-tight'>
                   {t('success.title')}
                 </h3>
-                <p className='text-lg leading-relaxed text-foreground/60 font-light italic'>
+                <p className='text-lg sm:text-xl leading-relaxed text-foreground/70 font-serif italic font-light'>
                   {t('success.message1')}
                   <br />
                   {t('success.message2')}
@@ -141,7 +171,7 @@ export function RSVP() {
               </div>
               <Button
                 variant='outline'
-                className='rounded-full px-10 border-primary/20 hover:bg-primary/5 transition-colors font-serif italic tracking-wider'
+                className='mt-2 rounded-full px-12 h-12 border-primary/30 hover:bg-primary/5 transition-all duration-500 font-serif italic tracking-widest text-lg'
                 onClick={() => setIsSubmitted(false)}
               >
                 {t('success.resetButton')}
@@ -150,172 +180,221 @@ export function RSVP() {
           ) : (
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className='space-y-10 relative z-10'
+              className='space-y-8 relative z-10'
             >
-              <FieldGroup className='grid gap-8 md:grid-cols-2'>
-                <Controller
-                  control={form.control}
-                  name='fullName'
-                  render={({ field, fieldState }) => (
-                    <Field
-                      data-invalid={fieldState.invalid}
-                      className='flex flex-col gap-3'
-                    >
-                      <FieldLabel className='font-serif text-[10px] uppercase tracking-[0.3em] text-primary/60'>
-                        {t('form.fullNameLabel')}
-                      </FieldLabel>
-                      <Input
-                        placeholder={t('form.fullNamePlaceholder')}
-                        className='bg-transparent border-0 border-b border-primary/20 rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary/40 transition-colors h-auto text-lg font-serif italic'
-                        {...field}
-                      />
-                      {fieldState.invalid && (
-                        <FieldError
-                          errors={[fieldState.error]}
-                          className='text-[10px] uppercase tracking-widest'
+              <FieldGroup className='grid gap-x-10 gap-y-8 md:grid-cols-2'>
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                >
+                  <Controller
+                    control={form.control}
+                    name='fullName'
+                    render={({ field, fieldState }) => (
+                      <Field
+                        data-invalid={fieldState.invalid}
+                        className='flex flex-col gap-2'
+                      >
+                        <FieldLabel className='font-serif text-[10px] uppercase tracking-[0.4em] text-primary/80'>
+                          {t('form.fullNameLabel')}
+                        </FieldLabel>
+                        <Input
+                          placeholder={t('form.fullNamePlaceholder')}
+                          className='bg-transparent border-0 border-b border-primary/30 rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary/60 transition-all duration-500 h-auto text-xl font-serif italic placeholder:text-foreground/40'
+                          {...field}
                         />
-                      )}
-                    </Field>
-                  )}
-                />
-
-                <Controller
-                  control={form.control}
-                  name='email'
-                  render={({ field, fieldState }) => (
-                    <Field
-                      data-invalid={fieldState.invalid}
-                      className='flex flex-col gap-3'
-                    >
-                      <FieldLabel className='font-serif text-[10px] uppercase tracking-[0.3em] text-primary/60'>
-                        {t('form.emailLabel')}
-                      </FieldLabel>
-                      <Input
-                        type='email'
-                        placeholder={t('form.emailPlaceholder')}
-                        className='bg-transparent border-0 border-b border-primary/20 rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary/40 transition-colors h-auto text-lg font-serif italic'
-                        {...field}
-                      />
-                      {fieldState.invalid && (
-                        <FieldError
-                          errors={[fieldState.error]}
-                          className='text-[10px] uppercase tracking-widest'
-                        />
-                      )}
-                    </Field>
-                  )}
-                />
-
-                <Controller
-                  control={form.control}
-                  name='attendance'
-                  render={({ field, fieldState }) => (
-                    <Field
-                      data-invalid={fieldState.invalid}
-                      className='flex flex-col gap-3 md:col-span-2'
-                    >
-                      <FieldLabel className='font-serif text-[10px] uppercase tracking-[0.8em] text-primary/60'>
-                        {t('form.attendanceLabel')}
-                      </FieldLabel>
-                      <div className='flex flex-wrap gap-x-12 gap-y-6 pt-2'>
-                        <label className='flex items-center gap-3 cursor-pointer group'>
-                          <Checkbox
-                            checked={field.value === 'yes'}
-                            onCheckedChange={(checked) => {
-                              if (checked) field.onChange('yes');
-                            }}
+                        {fieldState.invalid && (
+                          <FieldError
+                            errors={[fieldState.error]}
+                            className='text-[10px] uppercase tracking-widest font-serif italic'
                           />
-                          <span className='font-serif italic text-lg text-foreground/80 group-hover:text-foreground transition-colors'>
-                            {t('form.attendanceYes')}
-                          </span>
-                        </label>
-                        <label className='flex items-center gap-3 cursor-pointer group'>
-                          <Checkbox
-                            checked={field.value === 'no'}
-                            onCheckedChange={(checked) => {
-                              if (checked) field.onChange('no');
-                            }}
+                        )}
+                      </Field>
+                    )}
+                  />
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <Controller
+                    control={form.control}
+                    name='email'
+                    render={({ field, fieldState }) => (
+                      <Field
+                        data-invalid={fieldState.invalid}
+                        className='flex flex-col gap-2'
+                      >
+                        <FieldLabel className='font-serif text-[10px] uppercase tracking-[0.4em] text-primary/80'>
+                          {t('form.emailLabel')}
+                        </FieldLabel>
+                        <Input
+                          type='email'
+                          placeholder={t('form.emailPlaceholder')}
+                          className='bg-transparent border-0 border-b border-primary/30 rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary/60 transition-all duration-500 h-auto text-xl font-serif italic placeholder:text-foreground/40'
+                          {...field}
+                        />
+                        {fieldState.invalid && (
+                          <FieldError
+                            errors={[fieldState.error]}
+                            className='text-[10px] uppercase tracking-widest font-serif italic'
                           />
-                          <span className='font-serif italic text-lg text-foreground/80 group-hover:text-foreground transition-colors'>
-                            {t('form.attendanceNo')}
-                          </span>
-                        </label>
-                      </div>
-                      {fieldState.invalid && (
-                        <FieldError
-                          errors={[fieldState.error]}
-                          className='text-[10px] uppercase tracking-widest'
-                        />
-                      )}
-                    </Field>
-                  )}
-                />
+                        )}
+                      </Field>
+                    )}
+                  />
+                </motion.div>
 
-                <Controller
-                  control={form.control}
-                  name='plusOne'
-                  render={({ field, fieldState }) => (
-                    <Field
-                      data-invalid={fieldState.invalid}
-                      className='flex flex-col gap-3'
-                    >
-                      <FieldLabel className='font-serif text-[10px] uppercase tracking-[0.3em] text-primary/60'>
-                        {t('form.plusOneLabel')}
-                      </FieldLabel>
-                      <Input
-                        placeholder={t('form.plusOnePlaceholder')}
-                        className='bg-transparent border-0 border-b border-primary/20 rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary/40 transition-colors h-auto text-lg font-serif italic'
-                        {...field}
-                      />
-                      {fieldState.invalid && (
-                        <FieldError
-                          errors={[fieldState.error]}
-                          className='text-[10px] uppercase tracking-widest'
-                        />
-                      )}
-                    </Field>
-                  )}
-                />
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 }}
+                  className='md:col-span-2'
+                >
+                  <Controller
+                    control={form.control}
+                    name='attendance'
+                    render={({ field, fieldState }) => (
+                      <Field
+                        data-invalid={fieldState.invalid}
+                        className='flex flex-col gap-4'
+                      >
+                        <FieldLabel className='font-serif text-[11px] uppercase tracking-[0.6em] text-primary/80 text-center'>
+                          {t('form.attendanceLabel')}
+                        </FieldLabel>
+                        <div className='flex flex-wrap justify-center gap-x-12 gap-y-3'>
+                          <label className='flex items-center gap-3 cursor-pointer group transition-transform active:scale-95'>
+                            <Checkbox
+                              checked={field.value === 'yes'}
+                              onCheckedChange={(checked) => {
+                                if (checked) field.onChange('yes');
+                              }}
+                              className='w-5 h-5 border-primary/40 data-[state=checked]:bg-primary data-[state=checked]:border-primary'
+                            />
+                            <span className='font-serif italic text-xl text-foreground/80 group-hover:text-foreground transition-colors'>
+                              {t('form.attendanceYes')}
+                            </span>
+                          </label>
+                          <label className='flex items-center gap-3 cursor-pointer group transition-transform active:scale-95'>
+                            <Checkbox
+                              checked={field.value === 'no'}
+                              onCheckedChange={(checked) => {
+                                if (checked) field.onChange('no');
+                              }}
+                              className='w-5 h-5 border-primary/40 data-[state=checked]:bg-primary data-[state=checked]:border-primary'
+                            />
+                            <span className='font-serif italic text-xl text-foreground/80 group-hover:text-foreground transition-colors'>
+                              {t('form.attendanceNo')}
+                            </span>
+                          </label>
+                        </div>
+                        {fieldState.invalid && (
+                          <FieldError
+                            errors={[fieldState.error]}
+                            className='text-[10px] uppercase tracking-widest text-center font-serif italic'
+                          />
+                        )}
+                      </Field>
+                    )}
+                  />
+                </motion.div>
 
-                <Controller
-                  control={form.control}
-                  name='message'
-                  render={({ field, fieldState }) => (
-                    <Field
-                      data-invalid={fieldState.invalid}
-                      className='flex flex-col gap-3 md:col-span-2'
-                    >
-                      <FieldLabel className='font-serif text-[10px] uppercase tracking-[0.3em] text-primary/60'>
-                        {t('form.messageLabel')}
-                      </FieldLabel>
-                      <Textarea
-                        placeholder={t('form.messagePlaceholder')}
-                        className='bg-transparent border-0 border-b border-primary/20 rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary/40 transition-colors h-auto text-lg font-serif italic min-h-[100px] resize-none'
-                        {...field}
-                      />
-                      {fieldState.invalid && (
-                        <FieldError
-                          errors={[fieldState.error]}
-                          className='text-[10px] uppercase tracking-widest'
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 }}
+                  className='md:col-span-2'
+                >
+                  <Controller
+                    control={form.control}
+                    name='plusOne'
+                    render={({ field, fieldState }) => (
+                      <Field
+                        data-invalid={fieldState.invalid}
+                        className='flex flex-col gap-2'
+                      >
+                        <FieldLabel className='font-serif text-[10px] uppercase tracking-[0.4em] text-primary/80'>
+                          {t('form.plusOneLabel')}
+                        </FieldLabel>
+                        <Input
+                          placeholder={t('form.plusOnePlaceholder')}
+                          className='bg-transparent border-0 border-b border-primary/30 rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary/60 transition-all duration-500 h-auto text-xl font-serif italic placeholder:text-foreground/40'
+                          {...field}
                         />
-                      )}
-                    </Field>
-                  )}
-                />
+                        {fieldState.invalid && (
+                          <FieldError
+                            errors={[fieldState.error]}
+                            className='text-[10px] uppercase tracking-widest font-serif italic'
+                          />
+                        )}
+                      </Field>
+                    )}
+                  />
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 }}
+                  className='md:col-span-2'
+                >
+                  <Controller
+                    control={form.control}
+                    name='message'
+                    render={({ field, fieldState }) => (
+                      <Field
+                        data-invalid={fieldState.invalid}
+                        className='flex flex-col gap-2'
+                      >
+                        <FieldLabel className='font-serif text-[10px] uppercase tracking-[0.4em] text-primary/80'>
+                          {t('form.messageLabel')}
+                        </FieldLabel>
+                        <Textarea
+                          placeholder={t('form.messagePlaceholder')}
+                          className='bg-transparent border-0 border-b border-primary/30 rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary/60 transition-all duration-500 h-auto text-xl font-serif italic min-h-[100px] resize-none placeholder:text-foreground/40 leading-relaxed'
+                          {...field}
+                        />
+                        {fieldState.invalid && (
+                          <FieldError
+                            errors={[fieldState.error]}
+                            className='text-[10px] uppercase tracking-widest font-serif italic'
+                          />
+                        )}
+                      </Field>
+                    )}
+                  />
+                </motion.div>
               </FieldGroup>
 
-              <div className='flex flex-col items-center gap-6 pt-6'>
-                <Button
-                  type='submit'
-                  size='lg'
-                  className='rounded-full px-12 h-14 bg-primary text-primary-foreground hover:bg-primary/90 transition-[background-color,transform,box-shadow] font-serif text-lg italic tracking-widest shadow-xl shadow-primary/10'
-                >
-                  {t('form.submitButton')}
-                </Button>
-                <p className='text-[10px] uppercase tracking-[0.2em] text-foreground/30'>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6 }}
+                className='flex flex-col items-center gap-6 pt-4'
+              >
+                <div className='relative group'>
+                  <div className='absolute -inset-1 bg-primary/20 rounded-full blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200' />
+                  <Button
+                    type='submit'
+                    size='lg'
+                    className='relative rounded-full px-16 h-14 bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-500 font-serif text-xl italic tracking-[0.2em] shadow-2xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98]'
+                  >
+                    {t('form.submitButton')}
+                  </Button>
+                </div>
+                <p className='text-[10px] uppercase tracking-[0.3em] text-foreground/40 font-serif font-medium'>
                   {t('form.privacyNote')}
                 </p>
-              </div>
+              </motion.div>
             </form>
           )}
         </motion.div>

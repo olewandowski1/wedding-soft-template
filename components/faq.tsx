@@ -69,7 +69,7 @@ export function FAQ() {
             viewport={{ once: true }}
             className='relative'
           >
-            <span className='font-serif text-[10px] uppercase tracking-[0.8em] text-primary/80 block'>
+            <span className='font-serif text-[13px] uppercase tracking-[0.8em] text-primary/80 block'>
               {t('headerSubtitle')}
             </span>
             <h2 className='font-serif text-5xl sm:text-7xl lg:text-8xl text-foreground font-extralight tracking-tighter italic'>

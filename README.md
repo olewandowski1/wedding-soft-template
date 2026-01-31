@@ -1,111 +1,91 @@
-# Event Template
+# Wedding Soft Template
 
-Elegant and functional event website starter built with **Next.js (App Router)**, **Tailwind CSS v4**, and **shadcn/ui**.
+A premium, romantic, and intimate wedding website starter built with **Next.js 15 (App Router)**, **Tailwind CSS v4**, and **shadcn/ui**.
 
-This template is meticulously designed for building high-quality websites for milestone events such as:
+This template is specifically designed for couples who want a **soft, warm, and heartfelt** digital invitation. It prioritizes emotional clarity, accessibility for all generations, and a seamless mobile experience.
 
-- 💍 **Weddings** – Shared stories, schedules, and registry links.
-- 🎉 **Anniversaries** – Celebratory galleries and event details.
-- 🎂 **Birthdays & Galas** – RSVPs and venue information.
-- 🤝 **Meetups & Conferences** – Speaker lists and agendas.
+## ✨ Key Features
 
-## Features
+- **🌸 Romantic Aesthetic** – Meticulously crafted design system featuring a soft blush, ivory, and champagne gold palette.
+- **🌍 Multilanguage Support** – Full localization support (Polish & English) powered by `next-intl`.
+- **🔐 Privacy Gate** – Secure access control for guest-only content via Password and QR-code bypass.
+- **⚡ Modern Stack** – Next.js 15+, Tailwind CSS v4 (native CSS variables), and shadcn/ui.
+- **📱 Mobile First** – Optimized for guests viewing on their phones during the big day.
+- **🎭 Smooth Animations** – Subtle, non-intrusive micro-interactions using Framer Motion for a premium feel.
 
-- **Next.js App Router** – Modern routing with server components.
-- **Tailwind CSS v4** – Next-gen CSS engine with native variables.
-- **shadcn/ui** – Elegant UI components for a polished look.
-- **Theming** – Support for light/dark modes, often useful for "mood" based event styles.
-- **Mobile First** – Designed to look great on guests' phones.
-
-## Quick start
+## 🚀 Quick Start
 
 ### Prerequisites
 
 - Node.js (LTS recommended)
-- pnpm
+- `npm`
 
-### Install & run
+### Install & Run
 
 ```bash
-pnpm install
-pnpm dev
+npm install
+npm run dev
 ```
 
-Then open `http://localhost:3000`.
+Then open [http://localhost:3000](http://localhost:3000).
 
-## Event Page Setup
+## 🛠️ Configuration & Personalization
 
-### 1) Personalize your Event Sections
+### 1. Wedding Identity
 
-The default entry page is `app/(main)/page.tsx`. Customize it with typical event sections:
+Edit [`config/site.ts`](file:///c:/Users/olive/OneDrive/Obrazy/Dokumenty/Playground/wedding-soft-template/config/site.ts) to set your global details:
 
-- **Hero:** Big announcement (e.g., "Save the Date" or names).
-- **Our Story:** Timeline or description of the hosts/celebrants.
-- **Event Detail:** Date, time, and precise venue locations (Google Maps links).
-- **RSVP:** A form or clear instructions for guests to confirm attendance.
-- **Schedule:** Day-of-event timeline (Agendas).
-- **Registry/Gifts:** Links to preferred stores or donation funds.
-- **Photo Gallery:** Memories of the celebrants.
+- `NAME`: Your names (e.g., "Zofia & Jan").
+- `DESCRIPTION`: SEO and social share message.
+- `FIXED_THEME`: Locked to `'light'` by default to maintain the romantic "soft" vibe.
 
-### 2) Configure Event Identity
+### 2. Localization
 
-Edit `config/site.ts` to set global event details:
+Content is managed via JSON files in the `messages/` directory:
 
-- `NAME`: Event title (e.g., "Anna & John's Wedding").
-- `DESCRIPTION`: A short welcome message or detail for SEO.
-- `URL`: The domain where your event site will live.
-- `SOCIALS`: Links to social profiles if applicable.
+- [`pl.json`](file:///c:/Users/olive/OneDrive/Obrazy/Dokumenty/Playground/wedding-soft-template/messages/pl.json) – Polish translations.
+- [`en.json`](file:///c:/Users/olive/OneDrive/Obrazy/Dokumenty/Playground/wedding-soft-template/messages/en.json) – English translations.
 
-### 3) Visual Assets & OG Images
+### 3. Sections & Workflow
 
-- Replace `public/og-image.svg` with a beautiful photo or branded graphic for social shares.
-- Update `config/site.ts` `OG_IMAGE_URL` if necessary.
-- Update `app/icon.tsx` with a custom event icon/logo.
+The main entry point is [`app/[locale]/page.tsx`](file:///c:/Users/olive/OneDrive/Obrazy/Dokumenty/Playground/wedding-soft-template/app/[locale]/page.tsx). Customize the following sections:
 
-### 4) Theming & Mood
+- **Hero:** The big announcement.
+- **Our Story:** Your personal narrative.
+- **Details:** Ceremony and reception logistics (Maps, parking).
+- **Timeline:** The day-of schedule.
+- **RSVP:** Interactive form for guest confirmations.
 
-Set `FIXED_THEME` in `config/site.ts` to `'light'` or `'dark'` to lock the vibe, or leave as `null` for system-aware themes.
+## 📂 Project Structure
 
----
+- `app/[locale]/` – Next.js routes with i18n support.
+- `components/` – Custom wedding components.
+- `components/ui/` – Foundation UI components (shadcn/ui).
+- `messages/` – Translation files for PL and EN.
+- `lib/` – Utilities, auth logic, and hooks.
+- `styles/globals.css` – Tailwind v4 theme and design tokens.
 
-## Project structure
-
-- `app/` – Next.js routes/layouts
-  - `app/(main)/page.tsx` – current entry page (renders `ComponentExample`)
-  - `app/layout.tsx` – global layout, fonts, metadata, theme provider
-- `components/` – app components and examples
-  - `components/ui/` – shared UI components (shadcn)
-- `config/site.ts` – site name/URL/description/social handles + SEO defaults
-- `styles/globals.css` – Tailwind v4 entry + design tokens (light/dark)
-
-## Technical Reference
+## 📖 Technical Reference
 
 ### Commands
 
 ```bash
-pnpm dev      # run local dev server
-pnpm build    # create production build
-pnpm start    # run production server
-pnpm lint     # run eslint
-pnpm format   # prettier (ts/tsx/mdx)
+npm run dev      # run local dev server
+npm run build    # create production build
+npm run start    # run production server
+npm run lint     # run eslint check
+npm run format   # run prettier formatting
 ```
 
-### Adding UI components (shadcn)
+### Adding New UI Components
 
-This repo is already configured with `components.json`.
+This project is configured with `components.json`.
 
 ```bash
-pnpm shadcn add button
+npx shadcn@latest add [component-name]
 ```
 
-### Deployment
+## 📝 Notes
 
-Deploy as a standard Next.js app.
-
-- Build command: `pnpm build`
-- Start command: `pnpm start`
-
-## Notes
-
-- The example page includes an external image URL (Unsplash). Replace it for production usage if needed.
-- No environment variables are required by default.
+- **Theming:** The template is optimized for Light Mode to preserve the soft aesthetic. Dark mode support exists in CSS variables but is disabled by default in `config/site.ts`.
+- **Privacy:** Ensure you set up your `AUTH_PASSWORD` in `.env.local` for the access gate to function correctly.

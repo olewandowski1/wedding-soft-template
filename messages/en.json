@@ -240,6 +240,8 @@
   "NotFound": {
     "title": "Page not found",
     "description": "We are sorry, but the page you are looking for does not exist or has been moved. Return to the home page to continue viewing our wedding details.",
-    "backHome": "Back to Home"
+    "backHome": "Back to Home",
+    "label": "Not Found",
+    "error": "Error"
   }
 }

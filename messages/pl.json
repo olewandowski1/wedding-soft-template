@@ -240,6 +240,8 @@
   "NotFound": {
     "title": "Nie znaleziono strony",
     "description": "Przepraszamy, ale strona, której szukasz, nie istnieje lub została przeniesiona. Wróć na stronę główną, aby kontynuować przeglądanie szczegółów naszego ślubu.",
-    "backHome": "Wróć do strony głównej"
+    "backHome": "Wróć do strony głównej",
+    "label": "Nie znaleziono",
+    "error": "Błąd"
   }
 }

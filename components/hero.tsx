@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import { motion, useReducedMotion, type Variants } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -8,9 +9,10 @@ import * as React from 'react';
 
 type HeroProps = {
   cta?: React.ReactNode;
+  locked?: boolean;
 };
 
-export function Hero({ cta }: HeroProps) {
+export function Hero({ cta, locked }: HeroProps) {
   const t = useTranslations('Hero');
   const shouldReduceMotion = useReducedMotion();
 
@@ -37,7 +39,12 @@ export function Hero({ cta }: HeroProps) {
   return (
     <section
       id='hero'
-      className='relative flex min-h-[100dvh] flex-col items-center justify-start lg:justify-center overflow-hidden bg-background px-6 pt-24 pb-8 lg:pt-40 lg:pb-12'
+      className={cn(
+        'relative flex min-h-[100dvh] flex-col items-center justify-start lg:justify-center overflow-hidden bg-background px-6 pt-24 pb-8 lg:pt-40 lg:pb-12',
+        {
+          'lg:pt-0 lg:pb-0': locked,
+        },
+      )}
     >
       {/* Static Background Elements - No infinite animations */}
       <div className='absolute inset-0 pointer-events-none z-0'>
@@ -112,7 +119,7 @@ export function Hero({ cta }: HeroProps) {
             cta
           ) : (
             <Button
-              className='group relative h-13 overflow-hidden rounded-full bg-primary px-10 sm:px-16 text-[11px] uppercase tracking-[0.4em] text-primary-foreground transition-all duration-500 hover:scale-105 hover:shadow-[0_10px_40px_rgba(var(--color-primary),0.2)] active:scale-95 shadow-md'
+              className='group relative overflow-hidden rounded-full bg-primary sm:px-16 uppercase tracking-[0.4em] text-primary-foreground transition-all duration-500 hover:scale-105 hover:shadow-[0_10px_40px_rgba(var(--color-primary),0.2)] active:scale-95 shadow-md'
               onClick={() =>
                 document
                   .getElementById('rsvp')

@@ -32,7 +32,7 @@ export default async function Page({ searchParams }: PageProps) {
     return (
       <div className='flex min-h-screen flex-col'>
         <main className='grow'>
-          <Hero cta={<AccessGate unlockAction={unlockAccess} />} />
+          <Hero locked cta={<AccessGate unlockAction={unlockAccess} />} />
         </main>
       </div>
     );

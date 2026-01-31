@@ -119,7 +119,7 @@ export function Hero({ cta, locked }: HeroProps) {
             cta
           ) : (
             <Button
-              className='group relative overflow-hidden rounded-full bg-primary sm:px-16 uppercase tracking-[0.4em] text-primary-foreground transition-all duration-500 hover:scale-105 hover:shadow-[0_10px_40px_rgba(var(--color-primary),0.2)] active:scale-95 shadow-md'
+              className='group py-6 relative overflow-hidden rounded-full bg-primary sm:px-16 uppercase tracking-[0.4em] text-primary-foreground transition-all duration-500 hover:scale-105 hover:shadow-[0_10px_40px_rgba(var(--color-primary),0.2)] active:scale-95 shadow-md'
               onClick={() =>
                 document
                   .getElementById('rsvp')
